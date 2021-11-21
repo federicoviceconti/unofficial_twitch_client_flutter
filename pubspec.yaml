@@ -1,0 +1,30 @@
+name: unofficial_twitch_mobile
+description: An unofficial Flutter client, which use the newest Twitch API
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.1
+
+  unofficial_twitch_auth:
+    path: ./external_modules/unofficial_twitch_auth
+  unofficial_twitch_http:
+    path: ./external_modules/unofficial_twitch_http
+
+  unofficial_twitch_navigation:
+    path: ./external_modules/unofficial_twitch_navigation
+
+  webview_flutter: ^2.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true

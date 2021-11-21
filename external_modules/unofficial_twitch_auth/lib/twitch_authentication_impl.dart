@@ -1,0 +1,52 @@
+import 'package:unofficial_twitch_http/models/environment.dart';
+import 'package:unofficial_twitch_http/models/http_result.dart';
+import 'package:unofficial_twitch_http/unofficial_twitch_http.dart';
+
+import 'constants.dart';
+import 'models/auth_revoke_response.dart';
+import 'models/auth_validate_response.dart';
+import 'twitch_authentication.dart';
+
+class TwitchAuthenticationImpl extends TwitchAuthentication {
+  @override
+  TwitchHttpClientImpl get client => TwitchHttpClientImpl(
+          environmentBundle: EnvironmentBundle(
+        basePath: Constants.baseUrl,
+      ));
+
+  @override
+  String getLoginLink({
+    required String clientId,
+    required String redirect,
+  }) {
+    return '${Constants.baseUrl}/oauth2/authorize?client_id=$clientId&redirect_uri=$redirect&response_type=token+id_token&scope=openid';
+  }
+
+  @override
+  Future<HttpResult<AuthValidateResponse>> validate({
+    required String accessToken,
+  }) async {
+    return await client.makeGet<AuthValidateResponse>(
+      Constants.validateEndpoint,
+      headers: {
+        Constants.authorizationHeader: accessToken,
+      },
+      convertBodyFunc: (response) =>
+          AuthValidateResponse.fromHttpResponse(response.body),
+    );
+  }
+
+  @override
+  Future<HttpResult<AuthRevokeResponse>> revoke({
+    required String accessToken,
+  }) async {
+    return await client.makeGet<AuthRevokeResponse>(
+      Constants.revokeEndpoint,
+      queryParameters: {
+        Constants.clientIdParam: accessToken,
+        Constants.tokenParam: accessToken,
+      },
+      convertBodyFunc: (json) => AuthRevokeResponse.fromHttpResponse(json),
+    );
+  }
+}
