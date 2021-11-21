@@ -1,0 +1,1 @@
+library unofficial_twitch_open_api;

@@ -17,7 +17,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     String path, {
     required T Function(http.Response) convertBodyFunc,
     Map<String, String>? headers,
-    Map<String, String>? queryParameters,
+    Map<String, String?>? queryParameters,
   }) {
     return _makeRequest(
       method: 'GET',
@@ -33,7 +33,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     required String path,
     required T Function(http.Response) convertFunc,
     Map<String, String>? headers,
-    Map<String, String>? queryParameters,
+    Map<String, String?>? queryParameters,
   }) async {
     try {
       final response =
@@ -55,7 +55,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     String path,
     String method,
     Map<String, String>? headers,
-    Map<String, String>? queryParameters,
+    Map<String, String?>? queryParameters,
   ) async {
     switch (method) {
       case 'GET':

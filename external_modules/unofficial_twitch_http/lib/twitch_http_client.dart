@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:unofficial_twitch_http/models/environment.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,6 +14,6 @@ abstract class TwitchHttpClient {
     String path, {
     required T Function(http.Response) convertBodyFunc,
     Map<String, String>? headers,
-    Map<String, String>? queryParameters,
+    Map<String, String?>? queryParameters,
   });
 }
