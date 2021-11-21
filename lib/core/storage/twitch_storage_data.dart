@@ -21,4 +21,9 @@ class TwitchStorageData extends PersistentStorageData {
   Future<void> write(String key, String value) async {
     await storage.write(key: key, value: value);
   }
+
+  @override
+  Future<void> delete(String key) async {
+    await storage.delete(key: key);
+  }
 }

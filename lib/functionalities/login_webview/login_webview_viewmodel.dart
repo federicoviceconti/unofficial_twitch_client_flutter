@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_auth/twitch_authentication.dart';
-import 'package:unofficial_twitch_mobile/core/config/twitch_app_config.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/core/storage/extension/persistent_storage_extension.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
@@ -16,24 +15,34 @@ class LoginWebViewViewModel extends BaseNotifier {
 
   LoginWebViewViewModel({
     required RouteNavigation navigation,
-  })  : authentication =
-            Provider.of<TwitchAuthentication>(navigation.navigationContext),
+  })
+      : authentication =
+  Provider.of<TwitchAuthentication>(navigation.navigationContext),
         super(
-          navigation: navigation,
-        );
+        navigation: navigation,
+      );
 
   init() async {
     final accessTokenStorage = await persistData.accessToken;
 
-    if(accessTokenStorage != null) {
-      _handleStorageFlow();
+    if (accessTokenStorage != null) {
+      _handleStorageFlow(accessTokenStorage);
     } else {
       _initLinkFlow();
     }
   }
 
-  void _handleStorageFlow() {
+  void _handleStorageFlow(String accessTokenStorage) async {
+    final validateResponse = await authentication.validate(
+      accessToken: accessTokenStorage,
+    );
 
+    if (validateResponse.hasError && validateResponse.result!.hasError) {
+      persistData.deleteAccessToken();
+      init();
+    } else {
+      //TODO go to home
+    }
   }
 
   void _initLinkFlow() {
@@ -62,7 +71,7 @@ class LoginWebViewViewModel extends BaseNotifier {
       );
 
       _handleUrl(url);
-    } else if(error.failingUrl != null){
+    } else if (error.failingUrl != null) {
       _handleUrl(error.failingUrl!);
     }
   }
@@ -77,8 +86,8 @@ class LoginWebViewViewModel extends BaseNotifier {
       tokenType: uri.queryParameters['token_type'],
     );
 
-    if(appConfig.accessToken != null) {
-      persistData.writeAccessToken(appConfig.accessToken! );
+    if (appConfig.accessToken != null) {
+      persistData.writeAccessToken(appConfig.accessToken!);
     }
   }
 }

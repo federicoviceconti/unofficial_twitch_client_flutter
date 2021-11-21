@@ -10,15 +10,22 @@ class AuthValidateResponse extends BaseHttpResponse {
   final int? expiresIn;
 
   AuthValidateResponse({
+    int? status,
+    String? message,
     this.clientId,
     this.login,
     this.scopes,
     this.userId,
     this.expiresIn,
-  });
+  }): super(
+    message: message,
+    status: status
+  );
 
   static AuthValidateResponse fromJson(Map<String, dynamic> json) {
     return AuthValidateResponse(
+      status: json['status'],
+      message: json['message'],
       clientId: json['client_id'],
       login: json['login'],
       scopes: json['scopes'],

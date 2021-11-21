@@ -7,6 +7,10 @@ extension PersistentStorageDataExt on PersistentStorageData {
   void writeAccessToken(String value) {
     write(PersistDataType.accessToken.key, value);
   }
+
+  void deleteAccessToken() {
+    delete(PersistDataType.accessToken.key);
+  }
 }
 
 enum PersistDataType { accessToken }
