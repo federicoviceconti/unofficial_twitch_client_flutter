@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.1
+  flutter_secure_storage: ^5.0.2
 
   unofficial_twitch_auth:
     path: ./external_modules/unofficial_twitch_auth

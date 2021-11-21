@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_auth/twitch_authentication.dart';
-import 'package:unofficial_twitch_mobile/navigation/home/route_navigation.dart';
+import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -21,8 +21,6 @@ class LoginWebViewViewModel extends BaseNotifier {
         );
 
   init() {
-    final appConfig = getAppConfig();
-
     _url = authentication.getLoginLink(
       clientId: appConfig.clientId,
       redirect: appConfig.redirect,
@@ -47,19 +45,20 @@ class LoginWebViewViewModel extends BaseNotifier {
         endIndex,
       );
 
-      final uri = Uri.parse(url.replaceFirst("#", "?"));
-      uri.queryParameters.forEach((key, value) {
-        debugPrint('key $key value $value');
-      });
-
-      getAppConfig().update(
-        accessToken: uri.queryParameters['access_token'],
-        idToken: uri.queryParameters['id_token'],
-        scope: uri.queryParameters['scope'],
-        tokenType: uri.queryParameters['token_type'],
-      );
-      
-      navigation.pop();
+      _handleUrl(url);
+    } else if(error.failingUrl != null){
+      _handleUrl(error.failingUrl!);
     }
+  }
+
+  void _handleUrl(String url) {
+    final uri = Uri.parse(url.replaceFirst("#", "?"));
+
+    appConfig.update(
+      accessToken: uri.queryParameters['access_token'],
+      idToken: uri.queryParameters['id_token'],
+      scope: uri.queryParameters['scope'],
+      tokenType: uri.queryParameters['token_type'],
+    );
   }
 }

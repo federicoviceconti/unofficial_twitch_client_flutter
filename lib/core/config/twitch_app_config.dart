@@ -1,4 +1,4 @@
-import 'package:unofficial_twitch_mobile/core/app_config.dart';
+import 'package:unofficial_twitch_mobile/core/config/app_config.dart';
 
 class TwitchAppConfig extends AppConfig {
   static TwitchAppConfig? _instance;
