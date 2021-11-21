@@ -3,6 +3,14 @@ abstract class AppConfig {
 
   String redirect;
 
+  String? accessToken;
+
+  String? scope;
+
+  String? tokenType;
+
+  String? idToken;
+
   AppConfig({
     required this.clientId,
     required this.redirect,

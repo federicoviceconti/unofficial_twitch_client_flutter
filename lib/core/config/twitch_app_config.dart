@@ -3,14 +3,6 @@ import 'package:unofficial_twitch_mobile/core/config/app_config.dart';
 class TwitchAppConfig extends AppConfig {
   static TwitchAppConfig? _instance;
 
-  String? accessToken;
-
-  String? scope;
-
-  String? tokenType;
-
-  String? idToken;
-
   factory TwitchAppConfig({
     required String clientId,
     required String redirect,

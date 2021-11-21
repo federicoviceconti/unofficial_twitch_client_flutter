@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_auth/twitch_authentication.dart';
+import 'package:unofficial_twitch_mobile/core/mixin/authentication_mixin.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/core/storage/extension/persistent_storage_extension.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class LoginWebViewViewModel extends BaseNotifier {
+class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
   final TwitchAuthentication authentication;
 
   String? _url;
@@ -15,12 +16,11 @@ class LoginWebViewViewModel extends BaseNotifier {
 
   LoginWebViewViewModel({
     required RouteNavigation navigation,
-  })
-      : authentication =
-  Provider.of<TwitchAuthentication>(navigation.navigationContext),
+  })  : authentication =
+            Provider.of<TwitchAuthentication>(navigation.navigationContext),
         super(
-        navigation: navigation,
-      );
+          navigation: navigation,
+        );
 
   init() async {
     final accessTokenStorage = await persistData.accessToken;
@@ -33,11 +33,12 @@ class LoginWebViewViewModel extends BaseNotifier {
   }
 
   void _handleStorageFlow(String accessTokenStorage) async {
-    final validateResponse = await authentication.validate(
-      accessToken: accessTokenStorage,
+    final isTokenValid = await validateToken(
+      authentication,
+      accessTokenStorage,
     );
 
-    if (validateResponse.hasError && validateResponse.result!.hasError) {
+    if (isTokenValid) {
       persistData.deleteAccessToken();
       init();
     } else {
