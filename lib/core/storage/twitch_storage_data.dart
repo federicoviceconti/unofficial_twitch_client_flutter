@@ -1,5 +1,24 @@
-abstract class PersistentStorageData {
-  Future<String?> read(String key);
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:unofficial_twitch_mobile/core/storage/persistent_storage_data.dart';
 
-  Future<void> write(String key, String value);
+class TwitchStorageData extends PersistentStorageData {
+  final FlutterSecureStorage storage = const FlutterSecureStorage();
+
+  static final TwitchStorageData _instance = TwitchStorageData._internal();
+
+  TwitchStorageData._internal();
+
+  factory TwitchStorageData() {
+    return _instance;
+  }
+
+  @override
+  Future<String?> read(String key) async {
+    return await storage.read(key: key);
+  }
+
+  @override
+  Future<void> write(String key, String value) async {
+    await storage.write(key: key, value: value);
+  }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_auth/twitch_authentication.dart';
+import 'package:unofficial_twitch_mobile/core/config/twitch_app_config.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
+import 'package:unofficial_twitch_mobile/core/storage/extension/persistent_storage_extension.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -20,7 +22,21 @@ class LoginWebViewViewModel extends BaseNotifier {
           navigation: navigation,
         );
 
-  init() {
+  init() async {
+    final accessTokenStorage = await persistData.accessToken;
+
+    if(accessTokenStorage != null) {
+      _handleStorageFlow();
+    } else {
+      _initLinkFlow();
+    }
+  }
+
+  void _handleStorageFlow() {
+
+  }
+
+  void _initLinkFlow() {
     _url = authentication.getLoginLink(
       clientId: appConfig.clientId,
       redirect: appConfig.redirect,
@@ -60,5 +76,9 @@ class LoginWebViewViewModel extends BaseNotifier {
       scope: uri.queryParameters['scope'],
       tokenType: uri.queryParameters['token_type'],
     );
+
+    if(appConfig.accessToken != null) {
+      persistData.writeAccessToken(appConfig.accessToken! );
+    }
   }
 }

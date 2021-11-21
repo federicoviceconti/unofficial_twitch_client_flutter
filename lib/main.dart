@@ -4,7 +4,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:unofficial_twitch_auth/unofficial_twitch_auth.dart';
 import 'package:unofficial_twitch_mobile/core/config/twitch_app_config.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
-import 'package:unofficial_twitch_mobile/core/storage/persistent_storage_data.dart';
+import 'package:unofficial_twitch_mobile/core/storage/twitch_storage_data.dart';
 import 'package:unofficial_twitch_mobile/utils/app_theme.dart';
 
 void main() {
