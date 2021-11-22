@@ -9,17 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.1
-  flutter_secure_storage: ^5.0.2
 
   unofficial_twitch_auth:
     path: ./external_modules/unofficial_twitch_auth
   unofficial_twitch_http:
     path: ./external_modules/unofficial_twitch_http
-
   unofficial_twitch_navigation:
     path: ./external_modules/unofficial_twitch_navigation
+  unofficial_twitch_open_api:
+    path: ./external_modules/unofficial_twitch_open_api
 
+  provider: ^6.0.1
+  flutter_secure_storage: ^5.0.2
   webview_flutter: ^2.3.1
 
 dev_dependencies:

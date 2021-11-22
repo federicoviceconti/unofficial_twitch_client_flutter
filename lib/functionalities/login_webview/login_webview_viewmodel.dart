@@ -39,10 +39,10 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
     );
 
     if (isTokenValid) {
+      //TODO go to home
+    } else {
       persistData.deleteAccessToken();
       init();
-    } else {
-      //TODO go to home
     }
   }
 

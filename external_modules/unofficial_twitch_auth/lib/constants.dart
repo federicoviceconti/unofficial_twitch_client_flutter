@@ -1,4 +1,4 @@
-class Constants {
+class TwitchAuthenticationConstants {
   static const String baseUrl = "https://id.twitch.tv";
 
   static const String validateEndpoint = "/oauth2/validate";

@@ -8,6 +8,7 @@ import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.d
 import 'package:unofficial_twitch_mobile/core/storage/persistent_storage_data.dart';
 import 'package:unofficial_twitch_mobile/core/storage/twitch_storage_data.dart';
 import 'package:unofficial_twitch_mobile/utils/app_theme.dart';
+import 'package:unofficial_twitch_open_api/twitch_open_api.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
       ),
       Provider<TwitchAuthentication>(
         create: (ctx) => TwitchAuthenticationImpl(),
+      ),
+      Provider<TwitchOpenApi>(
+        create: (ctx) => TwitchOpenApi(),
       ),
     ];
   }

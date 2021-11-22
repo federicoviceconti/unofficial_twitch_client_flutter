@@ -11,7 +11,7 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
   @override
   TwitchHttpClientImpl get client => TwitchHttpClientImpl(
           environmentBundle: EnvironmentBundle(
-        basePath: Constants.baseUrl,
+        basePath: TwitchAuthenticationConstants.baseUrl,
       ));
 
   @override
@@ -19,7 +19,7 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
     required String clientId,
     required String redirect,
   }) {
-    return '${Constants.baseUrl}/oauth2/authorize?client_id=$clientId&redirect_uri=$redirect&response_type=token+id_token&scope=openid';
+    return '${TwitchAuthenticationConstants.baseUrl}/oauth2/authorize?client_id=$clientId&redirect_uri=$redirect&response_type=token+id_token&scope=openid';
   }
 
   @override
@@ -27,9 +27,9 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
     required String accessToken,
   }) async {
     return await client.makeGet<AuthValidateResponse>(
-      Constants.validateEndpoint,
+      TwitchAuthenticationConstants.validateEndpoint,
       headers: {
-        Constants.authorizationHeader: accessToken,
+        TwitchAuthenticationConstants.authorizationHeader: accessToken,
       },
       convertBodyFunc: (response) =>
           AuthValidateResponse.fromHttpResponse(response.body),
@@ -41,10 +41,10 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
     required String accessToken,
   }) async {
     return await client.makeGet<AuthRevokeResponse>(
-      Constants.revokeEndpoint,
+      TwitchAuthenticationConstants.revokeEndpoint,
       queryParameters: {
-        Constants.clientIdParam: accessToken,
-        Constants.tokenParam: accessToken,
+        TwitchAuthenticationConstants.clientIdParam: accessToken,
+        TwitchAuthenticationConstants.tokenParam: accessToken,
       },
       convertBodyFunc: (json) => AuthRevokeResponse.fromHttpResponse(json),
     );

@@ -22,17 +22,25 @@ class BaseHttpResponse {
     this.status,
     this.message,
   });
+
+  BaseHttpResponse.genericErrorResponse({
+    this.status = 500,
+    this.message = 'Generic error',
+  });
 }
 
 class ErrorHttpResponse {}
 
 enum ErrorReason {
-  missingClient, invalidToken, unknown
+  missingClient,
+  invalidToken,
+  unknown
 }
 
 extension InvalidErrorReasonStringExt on String {
-  ErrorReason? get reason => {
-    'Invalid token': ErrorReason.invalidToken,
-    'missing client id': ErrorReason.missingClient,
-  }[this];
+  ErrorReason? get reason =>
+      {
+        'Invalid token': ErrorReason.invalidToken,
+        'missing client id': ErrorReason.missingClient,
+      }[this];
 }
