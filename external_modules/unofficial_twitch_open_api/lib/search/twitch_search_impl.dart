@@ -10,7 +10,7 @@ class TwitchSearchImpl extends TwitchSearch {
   @override
   Future<HttpResult<OpenApiSearchCategoriesResponse>> searchCategories({String? query, int? first, String? after}) {
     return client.makeGet(
-      OpenApiChannelConstants.channelInformationEndpoint,
+      OpenApiChannelConstants.searchCategoriesEndpoint,
       convertBodyFunc: (response) => OpenApiSearchCategoriesResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamQuery: query,
@@ -23,7 +23,7 @@ class TwitchSearchImpl extends TwitchSearch {
   @override
   Future<HttpResult<OpenApiSearchChannelsResponse>> searchChannels({String? query, int? first, String? after, bool? isLive}) {
     return client.makeGet(
-      OpenApiChannelConstants.channelInformationEndpoint,
+      OpenApiChannelConstants.searchChannelsEndpoint,
       convertBodyFunc: (response) => OpenApiSearchChannelsResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamQuery: query,
@@ -37,7 +37,7 @@ class TwitchSearchImpl extends TwitchSearch {
   @override
   Future<HttpResult<OpenApiSearchUsersResponse>> searchUser({int? id, String? login}) {
     return client.makeGet(
-      OpenApiChannelConstants.channelInformationEndpoint,
+      OpenApiChannelConstants.searchUsersEndpoint,
       convertBodyFunc: (response) => OpenApiSearchUsersResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamId: id?.toString(),

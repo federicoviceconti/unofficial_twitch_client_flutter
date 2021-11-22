@@ -34,13 +34,17 @@ class OpenApiChannelStreamSchedule extends BaseHttpResponse {
   }
 
   static OpenApiChannelStreamSchedule fromJson(Map<String, dynamic>? json) {
-    final segments = json?['data']?['segments'];
+    List<Map<String, dynamic>?>? segments = json?['data']?['segments'];
 
     final List<SegmentResult> segmentResultList = [];
 
     if (segments != null) {
-      segmentResultList.addAll(
-          segments.map((segment) => SegmentResult.fromJson(segment)).toList());
+      for (var segment in segments) {
+        final result = SegmentResult.fromJson(segment);
+        if(result != null) {
+          segmentResultList.add(result);
+        }
+      }
     }
 
     return OpenApiChannelStreamSchedule(

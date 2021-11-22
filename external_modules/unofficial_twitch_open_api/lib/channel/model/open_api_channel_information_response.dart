@@ -22,7 +22,10 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
 
     if (data != null) {
       for (var item in data) {
-        channelInformationResults.add(ChannelInformationResult.fromJson(item));
+        var jsonConverted = ChannelInformationResult.fromJson(item);
+        if(jsonConverted != null) {
+          channelInformationResults.add(jsonConverted);
+        }
       }
     }
 
@@ -70,7 +73,9 @@ class ChannelInformationResult {
     this.delay,
   });
 
-  static ChannelInformationResult fromJson(Map<String, dynamic> json) {
+  static ChannelInformationResult? fromJson(Map<String, dynamic>? json) {
+    if(json == null) return null;
+
     return ChannelInformationResult(
       broadcasterLanguage: json['broadcaster_language'],
       broadcasterLogin: json['broadcaster_login'],
