@@ -39,7 +39,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
     );
 
     if (isTokenValid) {
-      //TODO go to home
+      navigation.pushNamed(NameRoute.home);
     } else {
       persistData.deleteAccessToken();
       init();
@@ -77,7 +77,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
     }
   }
 
-  void _handleUrl(String url) {
+  Future<void> _handleUrl(String url) async {
     final uri = Uri.parse(url.replaceFirst("#", "?"));
 
     appConfig.update(
@@ -89,6 +89,20 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
 
     if (appConfig.accessToken != null) {
       persistData.writeAccessToken(appConfig.accessToken!);
+    }
+
+    final isTokenValid = await validateToken(
+      authentication,
+      appConfig.accessToken,
+    );
+
+    if (isTokenValid) {
+      navigation.pushNamed(NameRoute.home);
+    } else {
+      revokeToken(authentication, appConfig.accessToken);
+
+      persistData.deleteAccessToken();
+      navigation.pop();
     }
   }
 }

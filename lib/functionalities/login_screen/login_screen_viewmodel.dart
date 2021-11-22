@@ -23,7 +23,7 @@ class LoginScreenViewModel extends BaseNotifier with AuthenticationMixin {
     );
 
     if(isValidToken) {
-      //TODO go to home
+      navigation.pushNamed(NameRoute.home);
     } else {
       navigation.pushNamed(NameRoute.loginWebView);
     }

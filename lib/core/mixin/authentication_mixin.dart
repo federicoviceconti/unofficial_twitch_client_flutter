@@ -5,12 +5,23 @@ mixin AuthenticationMixin {
     TwitchAuthentication authentication,
     String? token,
   ) async {
-    if(token == null || token.isEmpty) return false;
+    if (token == null || token.isEmpty) return false;
 
     final validateResponse = await authentication.validate(
       accessToken: token,
     );
 
-    return validateResponse.hasError && validateResponse.result!.hasError;
+    return validateResponse.hasError || validateResponse.result!.hasError;
+  }
+
+  void revokeToken(
+    TwitchAuthentication authentication,
+    String? token,
+  ) async {
+    if (token == null || token.isEmpty) return;
+
+    await authentication.revoke(
+      accessToken: token,
+    );
   }
 }

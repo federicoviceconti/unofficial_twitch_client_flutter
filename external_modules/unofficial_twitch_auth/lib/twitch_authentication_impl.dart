@@ -28,9 +28,7 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
   }) async {
     return await client.makeGet<AuthValidateResponse>(
       TwitchAuthenticationConstants.validateEndpoint,
-      headers: {
-        TwitchAuthenticationConstants.authorizationHeader: accessToken,
-      },
+      bearerToken: accessToken,
       convertBodyFunc: (response) =>
           AuthValidateResponse.fromHttpResponse(response.body),
     );

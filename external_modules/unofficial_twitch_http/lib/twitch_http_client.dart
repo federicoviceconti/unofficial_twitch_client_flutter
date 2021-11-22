@@ -15,5 +15,15 @@ abstract class TwitchHttpClient {
     required T Function(http.Response) convertBodyFunc,
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
+    String? bearerToken,
+  });
+
+  Future<HttpResult<T>> makePost<T extends BaseHttpResponse>(
+    String path, {
+    required T Function(http.Response) convertBodyFunc,
+    Map<String, String>? headers,
+    Map<String, String?>? queryParameters,
+    Map<String, dynamic>? body,
+    String? bearerToken,
   });
 }

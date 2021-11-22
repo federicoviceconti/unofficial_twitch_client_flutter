@@ -259,6 +259,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  unofficial_twitch_open_api:
+    dependency: "direct main"
+    description:
+      path: "external_modules/unofficial_twitch_open_api"
+      relative: true
+    source: path
+    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:

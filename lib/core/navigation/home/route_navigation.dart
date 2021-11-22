@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:unofficial_twitch_mobile/functionalities/home_screen/home_screen_viewmodel.dart';
+import 'package:unofficial_twitch_mobile/functionalities/home_screen/home_screen_widget.dart';
 import 'package:unofficial_twitch_mobile/functionalities/login_screen/login_screen_viewmodel.dart';
 import 'package:unofficial_twitch_mobile/functionalities/login_screen/login_screen_widget.dart';
 import 'package:unofficial_twitch_mobile/functionalities/login_webview/login_webview_viewmodel.dart';
@@ -83,6 +85,16 @@ class RouteNavigation extends TwitchRouteNavigation<NameRoute> {
           ),
           settings,
         );
+      case NameRoute.home:
+        return _buildRoute(
+          ChangeNotifierProvider(
+            builder: (_, __) => const HomeScreenWidget(),
+            create: (ctx) => HomeScreenViewModel(
+              navigation: _getNavigation(ctx),
+            ),
+          ),
+          settings,
+        );
       default:
         return null;
     }
@@ -103,10 +115,12 @@ class RouteNavigation extends TwitchRouteNavigation<NameRoute> {
 enum NameRoute {
   loginScreen,
   loginWebView,
+  home,
 }
 
 extension NameRouteExt on NameRoute {
   String? get routeName => {
+        NameRoute.home: '/home',
         NameRoute.loginScreen: '/splash',
         NameRoute.loginWebView: '/loginWebView',
       }[this];
@@ -116,5 +130,6 @@ extension NameRouteStr on String {
   NameRoute? get route => {
         '/splash': NameRoute.loginScreen,
         '/loginWebView': NameRoute.loginWebView,
+        '/home': NameRoute.home,
       }[this];
 }
