@@ -7,6 +7,7 @@ import 'package:unofficial_twitch_mobile/functionalities/login_screen/login_scre
 import 'package:unofficial_twitch_mobile/functionalities/login_webview/login_webview_viewmodel.dart';
 import 'package:unofficial_twitch_mobile/functionalities/login_webview/login_webview_widget.dart';
 import 'package:unofficial_twitch_navigation/unofficial_twitch_navigation.dart';
+import 'package:unofficial_twitch_open_api/unofficial_twitch_open_api.dart';
 
 class RouteNavigation extends TwitchRouteNavigation<NameRoute> {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -91,6 +92,7 @@ class RouteNavigation extends TwitchRouteNavigation<NameRoute> {
             builder: (_, __) => const HomeScreenWidget(),
             create: (ctx) => HomeScreenViewModel(
               navigation: _getNavigation(ctx),
+              managerOpenApi: Provider.of<TwitchManagerOpenApi>(ctx),
             ),
           ),
           settings,

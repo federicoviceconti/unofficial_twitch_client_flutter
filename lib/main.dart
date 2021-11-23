@@ -56,8 +56,8 @@ class MyApp extends StatelessWidget {
       Provider<TwitchAuthentication>(
         create: (ctx) => TwitchAuthenticationImpl(),
       ),
-      Provider<TwitchOpenApi>(
-        create: (ctx) => TwitchOpenApi(),
+      Provider<TwitchManagerOpenApi>(
+        create: (ctx) => TwitchManagerOpenApi(),
       ),
     ];
   }
