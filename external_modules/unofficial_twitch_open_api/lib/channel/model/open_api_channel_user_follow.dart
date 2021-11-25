@@ -30,7 +30,7 @@ class OpenApiChannelUserFollow extends BaseHttpResponse {
   }
 
   static OpenApiChannelUserFollow fromJson(Map<String, dynamic> json) {
-    List<Map<String, dynamic>?>? data = json['data'];
+    List<dynamic>? data = json['data'];
 
     final List<UserFollow> userFollowList = [];
 

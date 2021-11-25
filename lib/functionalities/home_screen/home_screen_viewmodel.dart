@@ -21,10 +21,6 @@ class HomeScreenViewModel extends BaseNotifier {
     final info = managerOpenApi.of<TwitchChannelInformation>(
       bearerToken: token,
     );
-
-    debugPrint((await info.getChannelInformation(broadcasterId: ''))
-        .result
-        .toString());
   }
 
   void onTapSearch() async {
@@ -32,11 +28,5 @@ class HomeScreenViewModel extends BaseNotifier {
     final search = managerOpenApi.of<TwitchSearch>(
       bearerToken: token,
     );
-
-    final response = await search.searchChannels(
-      query: '',
-    );
-
-    debugPrint(response.result?.toString() ?? '');
   }
 }

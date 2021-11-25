@@ -56,7 +56,7 @@ class SearchUser {
   final String? description;
   final String? profileImageUrl;
   final String? offlineImageUrl;
-  final String? viewCount;
+  final int? viewCount;
   final String? email;
   final String? createdAt;
 
