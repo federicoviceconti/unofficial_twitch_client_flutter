@@ -28,7 +28,7 @@ class AuthValidateResponse extends BaseHttpResponse {
       message: json['message'],
       clientId: json['client_id'],
       login: json['login'],
-      scopes: json['scopes'],
+      scopes: _convertScopeList(json),
       userId: json['user_id'],
       expiresIn: json['expires_in'],
     );
@@ -36,5 +36,13 @@ class AuthValidateResponse extends BaseHttpResponse {
 
   static AuthValidateResponse fromHttpResponse(String body) {
     return AuthValidateResponse.fromJson(jsonDecode(body));
+  }
+
+  static List<String> _convertScopeList(Map<String, dynamic> json) {
+    try {
+      return json['scopes'].map((it) => it?.toString()).cast<String>().toList();
+    } catch(e) {
+      return [];
+    }
   }
 }

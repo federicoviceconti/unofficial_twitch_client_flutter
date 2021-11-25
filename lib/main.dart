@@ -40,13 +40,15 @@ class MyApp extends StatelessWidget {
 
   /// Override your own AppConfig to specify client_id and redirect URL
   List<SingleChildWidget> _initProvider() {
+    String clientId = const String.fromEnvironment('CLIENT_ID');
+
     return [
       Provider<PersistentStorageData>.value(
         value: TwitchStorageData(),
       ),
       Provider<AppConfig>.value(
         value: TwitchAppConfig(
-          clientId: const String.fromEnvironment('CLIENT_ID'),
+          clientId: clientId,
           redirect: const String.fromEnvironment('REDIRECT'),
         ),
       ),
@@ -57,7 +59,9 @@ class MyApp extends StatelessWidget {
         create: (ctx) => TwitchAuthenticationImpl(),
       ),
       Provider<TwitchManagerOpenApi>(
-        create: (ctx) => TwitchManagerOpenApi(),
+        create: (ctx) => TwitchManagerOpenApi(
+          clientId: clientId,
+        ),
       ),
     ];
   }

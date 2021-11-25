@@ -16,6 +16,7 @@ abstract class TwitchHttpClient {
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
+    String? clientId,
   });
 
   Future<HttpResult<T>> makePost<T extends BaseHttpResponse>(
@@ -25,5 +26,6 @@ abstract class TwitchHttpClient {
     Map<String, String?>? queryParameters,
     Map<String, dynamic>? body,
     String? bearerToken,
+    String? clientId,
   });
 }

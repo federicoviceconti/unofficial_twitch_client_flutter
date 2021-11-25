@@ -5,6 +5,8 @@ import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_user_f
 import 'package:unofficial_twitch_open_api/core/base_twitch_open_api.dart';
 
 abstract class TwitchChannelInformation extends BaseTwitchOpenApi {
+  TwitchChannelInformation(String? token, String? clientId) : super(token, clientId);
+
   /// Docs: https://dev.twitch.tv/docs/api/reference#get-channel-information
   Future<HttpResult<OpenApiChannelInformationResponse>> getChannelInformation({
     required String broadcasterId,

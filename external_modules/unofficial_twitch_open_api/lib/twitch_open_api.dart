@@ -7,21 +7,36 @@ import 'package:unofficial_twitch_open_api/search/twitch_search_impl.dart';
 class TwitchManagerOpenApi {
   static TwitchManagerOpenApi? _instance;
 
-  TwitchManagerOpenApi._();
+  String? clientId;
 
-  factory TwitchManagerOpenApi() {
-    _instance ??= TwitchManagerOpenApi._();
+  TwitchManagerOpenApi._({
+    required this.clientId,
+  });
+
+  factory TwitchManagerOpenApi({
+    required String? clientId,
+  }) {
+    _instance ??= TwitchManagerOpenApi._(clientId: clientId);
     return _instance!;
   }
 
-  T of<T extends BaseTwitchOpenApi>() {
-    assert(T is BaseTwitchOpenApi,
-        'typeof($T) is not subclass of BaseTwitchOpenApi in TwitchManagerOpenApi.getInstance');
-
-    if (T is TwitchChannelInformation) {
-      return TwitchChannelInformationImpl() as T;
-    } else if (T is TwitchSearch) {
-      return TwitchSearchImpl() as T;
+  /// Return an instance of subclass [BaseTwitchOpenApi]
+  /// Class type available:
+  /// - TwitchChannelInformation
+  /// - TwitchSearch
+  ///
+  /// @return subclass of [BaseTwitchOpenApi]
+  T of<T extends BaseTwitchOpenApi>({required String? bearerToken}) {
+    if (T == TwitchChannelInformation) {
+      return TwitchChannelInformationImpl(
+        clientId: clientId,
+        token: bearerToken,
+      ) as T;
+    } else if (T == TwitchSearch) {
+      return TwitchSearchImpl(
+        clientId: clientId,
+        token: bearerToken,
+      ) as T;
     }
 
     throw UnsupportedError(

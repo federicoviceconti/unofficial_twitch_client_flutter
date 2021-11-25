@@ -5,6 +5,8 @@ import 'package:unofficial_twitch_open_api/search/model/open_api_search_channels
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_users_response.dart';
 
 abstract class TwitchSearch extends BaseTwitchOpenApi {
+  TwitchSearch(String? token, String? clientId) : super(token, clientId);
+
   ///Docs: https://dev.twitch.tv/docs/api/reference#search-channels
   Future<HttpResult<OpenApiSearchChannelsResponse>> searchChannels({
     String? query,

@@ -9,6 +9,7 @@ import 'models/http_result.dart';
 
 class TwitchHttpClientImpl extends TwitchHttpClient {
   static const String headerAuthorization = 'Authorization';
+  static const String clientIdAuthorization = 'Client-Id';
 
   TwitchHttpClientImpl({
     required EnvironmentBundle environmentBundle,
@@ -23,6 +24,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
+    String? clientId,
   }) {
     return _makeRequest(
       method: 'GET',
@@ -31,6 +33,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
       headers: headers,
       queryParameters: queryParameters,
       bearerToken: bearerToken,
+      clientId: clientId,
     );
   }
 
@@ -42,6 +45,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Map<String, String?>? queryParameters,
     Map<String, dynamic>? body,
     String? bearerToken,
+    String? clientId,
   }) {
     return _makeRequest(
       method: 'POST',
@@ -50,6 +54,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
       headers: headers,
       queryParameters: queryParameters,
       bearerToken: bearerToken,
+      clientId: clientId,
       body: body,
     );
   }
@@ -61,6 +66,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
+    String? clientId,
     Map<String, dynamic>? body,
   }) async {
     try {
@@ -70,7 +76,8 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
         headers,
         queryParameters,
         bearerToken,
-        body
+        clientId,
+        body,
       );
 
       return HttpResult(
@@ -91,14 +98,23 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
+    String? clientId,
     Map<String, dynamic>? body,
   ) async {
+    queryParameters
+        ?.removeWhere((key, value) => value == null || value.isEmpty);
+
     final uri = Uri.parse(environmentBundle.basePath + path)
         .replace(queryParameters: queryParameters);
 
     if (bearerToken != null) {
       headers ??= {};
       headers[headerAuthorization] = 'Bearer $bearerToken';
+    }
+
+    if (clientId != null) {
+      headers ??= {};
+      headers[clientIdAuthorization] = clientId;
     }
 
     Response? response;
@@ -117,18 +133,30 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
           body: body,
         );
         break;
+      default:
+        throw UnsupportedError('Method not supported -> $method!');
     }
 
+    _logResponse(method, uri, headers, body, response);
+
+    return response;
+  }
+
+  void _logResponse(
+    String method,
+    Uri uri,
+    Map<String, String>? headers,
+    Map<String, dynamic>? body,
+    http.Response response,
+  ) {
     debugPrint("|==REQUEST\n|__$method $uri\n|__headers: $headers");
 
-    if(body != null) {
+    if (body != null) {
       debugPrint("|__Body: $body");
     }
 
     debugPrint("|==RESPONSE");
-    debugPrint("|__Code: ${response?.statusCode}");
-    debugPrint("|__Body: ${response?.body}");
-
-    throw UnsupportedError('Method not supported -> $method!');
+    debugPrint("|__Code: ${response.statusCode}");
+    debugPrint("|__Body: ${response.body}");
   }
 }

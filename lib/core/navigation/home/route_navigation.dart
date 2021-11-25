@@ -92,7 +92,10 @@ class RouteNavigation extends TwitchRouteNavigation<NameRoute> {
             builder: (_, __) => const HomeScreenWidget(),
             create: (ctx) => HomeScreenViewModel(
               navigation: _getNavigation(ctx),
-              managerOpenApi: Provider.of<TwitchManagerOpenApi>(ctx),
+              managerOpenApi: Provider.of<TwitchManagerOpenApi>(
+                ctx,
+                listen: false,
+              ),
             ),
           ),
           settings,

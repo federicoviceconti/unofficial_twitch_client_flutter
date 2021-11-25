@@ -6,7 +6,10 @@ import 'package:unofficial_twitch_open_api/core/open_api_channel_constants.dart'
 import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
 
 class TwitchChannelInformationImpl extends TwitchChannelInformation {
-  TwitchChannelInformationImpl();
+  TwitchChannelInformationImpl({
+    required String? token,
+    required String? clientId,
+  }) : super(token, clientId);
 
   @override
   Future<HttpResult<OpenApiChannelInformationResponse>> getChannelInformation({
@@ -14,10 +17,13 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
   }) {
     return client.makeGet(
       OpenApiChannelConstants.channelInformationEndpoint,
-      convertBodyFunc: (response) => OpenApiChannelInformationResponse.fromHttpResponse(response),
+      convertBodyFunc: (response) =>
+          OpenApiChannelInformationResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamBroadcasterId: broadcasterId,
       },
+      bearerToken: token,
+      clientId: clientId,
     );
   }
 
@@ -27,10 +33,13 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
   }) {
     return client.makeGet(
       OpenApiChannelConstants.channelStreamScheduleEndpoint,
-      convertBodyFunc: (response) => OpenApiChannelStreamSchedule.fromHttpResponse(response),
+      convertBodyFunc: (response) =>
+          OpenApiChannelStreamSchedule.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamBroadcasterId: broadcasterId,
       },
+      bearerToken: token,
+      clientId: clientId,
     );
   }
 
@@ -43,13 +52,16 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
   }) {
     return client.makeGet(
       OpenApiChannelConstants.channelUsersFollowEndpoint,
-      convertBodyFunc: (response) => OpenApiChannelUserFollow.fromHttpResponse(response),
+      convertBodyFunc: (response) =>
+          OpenApiChannelUserFollow.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamFromId: fromId,
         OpenApiChannelConstants.queryParamToId: toId,
         OpenApiChannelConstants.queryParamAfter: after,
         OpenApiChannelConstants.queryParamFirst: first?.toString(),
       },
+      bearerToken: token,
+      clientId: clientId,
     );
   }
 }

@@ -15,6 +15,11 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
           message: message,
         );
 
+  @override
+  String toString() {
+    return 'OpenApiChannelInformationResponse{channelList: $channelList}';
+  }
+
   static OpenApiChannelInformationResponse fromJson(Map<String, dynamic> json) {
     List? data = json['data'];
 
@@ -87,5 +92,10 @@ class ChannelInformationResult {
       title: json['title'],
       broadcasterId: json['broadcaster_id'],
     );
+  }
+
+  @override
+  String toString() {
+    return 'ChannelInformationResult{id: $id, broadcasterId: $broadcasterId, broadcasterLogin: $broadcasterLogin, broadcasterName: $broadcasterName, broadcasterLanguage: $broadcasterLanguage, gameId: $gameId, gameName: $gameName, title: $title, delay: $delay}';
   }
 }

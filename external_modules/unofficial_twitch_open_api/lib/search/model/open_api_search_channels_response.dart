@@ -17,6 +17,11 @@ class OpenApiSearchChannelsResponse extends BaseHttpResponse {
           message: message,
         );
 
+  @override
+  String toString() {
+    return 'OpenApiSearchChannelsResponse{searchChannelList: $searchChannelList, pagination: $pagination}';
+  }
+
   static OpenApiSearchChannelsResponse fromJson(Map<String, dynamic> json) {
     List? data = json['data'];
 
@@ -93,5 +98,10 @@ class SearchChannel {
       title: json['title'],
       startedAt: json['started_at'],
     );
+  }
+
+  @override
+  String toString() {
+    return 'SearchChannel{id: $id, broadcasterLanguage: $broadcasterLanguage, broadcasterLogin: $broadcasterLogin, displayName: $displayName, gameId: $gameId, gameName: $gameName, isLive: $isLive, tagsIds: $tagsIds, thumbnailUrl: $thumbnailUrl, title: $title, startedAt: $startedAt}';
   }
 }

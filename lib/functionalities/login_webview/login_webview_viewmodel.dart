@@ -35,7 +35,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
   void _handleStorageFlow(String accessTokenStorage) async {
     final isTokenValid = await validateToken(
       authentication,
-      accessTokenStorage,
+      accessToken: accessTokenStorage,
     );
 
     if (isTokenValid) {
@@ -91,15 +91,12 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
       persistData.writeAccessToken(appConfig.accessToken!);
     }
 
-    final isTokenValid = await validateToken(
-      authentication,
-      appConfig.accessToken,
-    );
+    final isTokenValid = await validateToken(authentication);
 
     if (isTokenValid) {
       navigation.pushNamed(NameRoute.home);
     } else {
-      revokeToken(authentication, appConfig.accessToken);
+      revokeToken(authentication);
 
       persistData.deleteAccessToken();
       navigation.pop();

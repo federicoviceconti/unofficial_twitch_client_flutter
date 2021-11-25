@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
+import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
+import 'package:unofficial_twitch_open_api/search/twitch_search.dart';
 import 'package:unofficial_twitch_open_api/unofficial_twitch_open_api.dart';
 
 class HomeScreenViewModel extends BaseNotifier {
@@ -10,7 +13,30 @@ class HomeScreenViewModel extends BaseNotifier {
     required this.managerOpenApi,
   }) : super(navigation: navigation);
 
-  void init() {
+  void init() {}
 
+  void onTapInfo() async {
+    final token = appConfig.accessToken;
+
+    final info = managerOpenApi.of<TwitchChannelInformation>(
+      bearerToken: token,
+    );
+
+    debugPrint((await info.getChannelInformation(broadcasterId: ''))
+        .result
+        .toString());
+  }
+
+  void onTapSearch() async {
+    final token = appConfig.accessToken;
+    final search = managerOpenApi.of<TwitchSearch>(
+      bearerToken: token,
+    );
+
+    final response = await search.searchChannels(
+      query: '',
+    );
+
+    debugPrint(response.result?.toString() ?? '');
   }
 }

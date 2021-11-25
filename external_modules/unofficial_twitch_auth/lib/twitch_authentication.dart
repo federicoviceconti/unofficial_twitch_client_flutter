@@ -13,10 +13,11 @@ abstract class TwitchAuthentication {
   });
 
   Future<HttpResult<AuthValidateResponse>> validate({
-    required String accessToken,
+    required String accessToken
   });
 
   Future<HttpResult<AuthRevokeResponse>> revoke({
     required String accessToken,
+    required String clientId,
   });
 }

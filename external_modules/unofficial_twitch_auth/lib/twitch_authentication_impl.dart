@@ -24,7 +24,7 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
 
   @override
   Future<HttpResult<AuthValidateResponse>> validate({
-    required String accessToken,
+    required String accessToken
   }) async {
     return await client.makeGet<AuthValidateResponse>(
       TwitchAuthenticationConstants.validateEndpoint,
@@ -37,11 +37,12 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
   @override
   Future<HttpResult<AuthRevokeResponse>> revoke({
     required String accessToken,
+    required String clientId,
   }) async {
     return await client.makeGet<AuthRevokeResponse>(
       TwitchAuthenticationConstants.revokeEndpoint,
       queryParameters: {
-        TwitchAuthenticationConstants.clientIdParam: accessToken,
+        TwitchAuthenticationConstants.clientIdParam: clientId,
         TwitchAuthenticationConstants.tokenParam: accessToken,
       },
       convertBodyFunc: (json) => AuthRevokeResponse.fromHttpResponse(json),
