@@ -24,4 +24,9 @@ abstract class TwitchChannelInformation extends BaseTwitchOpenApi {
     String? after,
     String? toId,
   });
+
+  /// Docs: https://dev.twitch.tv/docs/api/reference#get-channel-teams
+  Future<HttpResult<dynamic>> getChannelTeams({
+    required String broadcasterId,
+  });
 }

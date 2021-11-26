@@ -5,6 +5,7 @@ class OpenApiChannelConstants {
   static const String searchChannelsEndpoint = '/helix/search/channels';
   static const String searchCategoriesEndpoint = '/helix/search/categories';
   static const String searchUsersEndpoint = '/helix/users';
+  static const String getChannelTeamsEndpoint = '/helix/teams/channel';
 
   static const String queryParamBroadcasterId = 'broadcaster_id';
   static const String queryParamFromId = 'from_id';

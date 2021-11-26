@@ -7,7 +7,7 @@ import 'package:unofficial_twitch_open_api/search/model/open_api_search_users_re
 abstract class TwitchSearch extends BaseTwitchOpenApi {
   TwitchSearch(String? token, String? clientId) : super(token, clientId);
 
-  ///Docs: https://dev.twitch.tv/docs/api/reference#search-channels
+  /// Docs: https://dev.twitch.tv/docs/api/reference#search-channels
   Future<HttpResult<OpenApiSearchChannelsResponse>> searchChannels({
     String? query,
     int? first,
@@ -15,14 +15,14 @@ abstract class TwitchSearch extends BaseTwitchOpenApi {
     bool? isLive,
   });
 
-  ///Docs: https://dev.twitch.tv/docs/api/reference#search-categories
+  /// Docs: https://dev.twitch.tv/docs/api/reference#search-categories
   Future<HttpResult<OpenApiSearchCategoriesResponse>> searchCategories({
     String? query,
     int? first,
     String? after,
   });
 
-  ///Docs: https://dev.twitch.tv/docs/api/reference#get-users
+  /// Docs: https://dev.twitch.tv/docs/api/reference#get-users
   Future<HttpResult<OpenApiSearchUsersResponse>> searchUser({
     int? id,
     String? login,
