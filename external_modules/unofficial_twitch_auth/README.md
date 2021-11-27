@@ -1,39 +1,53 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package allows to validate, revoke or authenticate your client using the newest Twitch API.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+It contains the following methods:
+
+- getLoginLink: used to retrieve the login link
+- validate: the endpoint /oauth2/validate allows to validate the token retrieved
+- revoke: the endpoint /oauth2/revoke allows to revoke the token
+
+For more information see the
+class [twitch_authentication.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/external_modules/unofficial_twitch_auth/lib/twitch_authentication.dart)
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Go to the dev website: https://dev.twitch.tv
+- Open "Your Console"
+- Register a new application with: name, OAuth redirect and the category
+
+When you finish to set it up, you will redirect to your app. Here you can your Client ID and secret
+token (don't share to anyone!)
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+You can use with Provider to retrieve the implementation instance:
 
 ```dart
-const like = 'sample';
+List<SingleChildWidget> _initProvider() {
+  return [
+    ...
+    Provider<TwitchAuthentication>(
+      create: (ctx) => TwitchAuthenticationImpl(),
+    ),
+  ];
+}
+```
+
+Or you can use get_it library to register your instance and its implementation:
+
+```dart
+
+GetIt getIt = GetIt.instance;
+
+void setup() {
+  getIt.registerSingleton<TwitchAuthentication>(
+      TwitchAuthenticationImpl()
+  );
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+If you want a real example, see the main app "unofficial_twitch_mobile"
