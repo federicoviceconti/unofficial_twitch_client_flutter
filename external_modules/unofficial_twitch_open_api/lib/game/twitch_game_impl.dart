@@ -5,7 +5,10 @@ import 'package:unofficial_twitch_open_api/game/model/open_api_get_top_game_resp
 import 'package:unofficial_twitch_open_api/game/twitch_game.dart';
 
 class TwitchGameImpl extends TwitchGame {
-  TwitchGameImpl(String? token, String? clientId) : super(token, clientId);
+  TwitchGameImpl({
+    String? token,
+    String? clientId,
+  }) : super(token, clientId);
 
   @override
   Future<HttpResult<OpenApiGetGameResponse>> getName({required String name}) {
@@ -15,9 +18,7 @@ class TwitchGameImpl extends TwitchGame {
           OpenApiGetGameResponse.fromHttpResponse(response),
       bearerToken: token,
       clientId: clientId,
-      queryParameters: {
-        OpenApiChannelConstants.queryParamName: name
-      },
+      queryParameters: {OpenApiChannelConstants.queryParamName: name},
     );
   }
 

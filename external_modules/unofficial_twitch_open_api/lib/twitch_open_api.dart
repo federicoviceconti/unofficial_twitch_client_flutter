@@ -1,6 +1,8 @@
 import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
 import 'package:unofficial_twitch_open_api/channel/twitch_channel_information_impl.dart';
 import 'package:unofficial_twitch_open_api/core/base_twitch_open_api.dart';
+import 'package:unofficial_twitch_open_api/game/twitch_game.dart';
+import 'package:unofficial_twitch_open_api/game/twitch_game_impl.dart';
 import 'package:unofficial_twitch_open_api/search/twitch_search.dart';
 import 'package:unofficial_twitch_open_api/search/twitch_search_impl.dart';
 
@@ -22,8 +24,9 @@ class TwitchManagerOpenApi {
 
   /// Return an instance of subclass [BaseTwitchOpenApi]
   /// Class type available:
-  /// - TwitchChannelInformation
-  /// - TwitchSearch
+  /// - [TwitchChannelInformation]
+  /// - [TwitchSearch]
+  /// - [TwitchGame]
   ///
   /// @return subclass of [BaseTwitchOpenApi]
   T of<T extends BaseTwitchOpenApi>({required String? bearerToken}) {
@@ -34,6 +37,11 @@ class TwitchManagerOpenApi {
       ) as T;
     } else if (T == TwitchSearch) {
       return TwitchSearchImpl(
+        clientId: clientId,
+        token: bearerToken,
+      ) as T;
+    } else if (T == TwitchGame) {
+      return TwitchGameImpl(
         clientId: clientId,
         token: bearerToken,
       ) as T;
