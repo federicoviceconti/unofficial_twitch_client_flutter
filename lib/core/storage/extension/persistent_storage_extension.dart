@@ -16,12 +16,14 @@ extension PersistentStorageDataExt on PersistentStorageData {
 enum PersistDataType { accessToken }
 
 extension PersistDataTypeExt on PersistDataType {
+  static const String accessTokenKey = 'ACCESS_TOKEN';
+
   String get key {
     switch (this) {
       case PersistDataType.accessToken:
-        return 'ACCESS_TOKEN';
+        return accessTokenKey;
       default:
-        throw UnsupportedError('Key not found on PersistDataType enum!');
+        throw UnsupportedError('Key $this not found on PersistDataType enum!');
     }
   }
 }

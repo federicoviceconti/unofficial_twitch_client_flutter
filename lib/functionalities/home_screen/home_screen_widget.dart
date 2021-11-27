@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_mobile/functionalities/home_screen/home_screen_viewmodel.dart';
 import 'package:unofficial_twitch_mobile/utils/widget/base_widget.dart';
+import 'package:unofficial_twitch_mobile/utils/widget/base_state.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   const HomeScreenWidget({Key? key}) : super(key: key);
@@ -10,23 +11,26 @@ class HomeScreenWidget extends StatefulWidget {
   _HomeScreenWidgetState createState() => _HomeScreenWidgetState();
 }
 
-class _HomeScreenWidgetState extends State<HomeScreenWidget>
+class _HomeScreenWidgetState extends BaseState<HomeScreenWidget>
     with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance?.addObserver(this);
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      Provider.of<HomeScreenViewModel>(context, listen: false).init();
+      getInstance<HomeScreenViewModel>().init();
     });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(safeTop: true, child: _buildBody());
+    return BaseWidget(
+      safeTop: true,
+      child: _buildBody(),
+    );
   }
 
-  _buildBody() {
+  Widget _buildBody() {
     return Consumer<HomeScreenViewModel>(
       builder: (_, HomeScreenViewModel notifier, __) {
         return Column(

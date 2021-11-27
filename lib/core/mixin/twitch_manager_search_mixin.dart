@@ -29,11 +29,7 @@ mixin TwitchManagerSearchMixin on BaseNotifier {
   }
 
   TwitchSearch _getSearch() {
-    final manager = Provider.of<TwitchManagerOpenApi>(
-      navigation.navigationContext,
-      listen: false,
-    );
-
-    return manager.of<TwitchSearch>(bearerToken: appConfig.accessToken);
+    return getInstance<TwitchManagerOpenApi>()
+        .of<TwitchSearch>(bearerToken: appConfig.accessToken);
   }
 }

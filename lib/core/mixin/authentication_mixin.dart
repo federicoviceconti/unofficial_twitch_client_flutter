@@ -2,11 +2,10 @@ import 'package:unofficial_twitch_auth/unofficial_twitch_auth.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 
 mixin AuthenticationMixin on BaseNotifier {
-  Future<bool> validateToken(
-    TwitchAuthentication authentication, {
+  Future<bool> validateToken({
     String? accessToken,
   }) async {
-    final validateResponse = await authentication.validate(
+    final validateResponse = await getAuthInstance().validate(
       accessToken: accessToken ?? appConfig.accessToken ?? '',
     );
 
@@ -18,10 +17,14 @@ mixin AuthenticationMixin on BaseNotifier {
     return !hasError;
   }
 
-  void revokeToken(TwitchAuthentication authentication) async {
-    await authentication.revoke(
+  void revokeToken() async {
+    await getAuthInstance().revoke(
       accessToken: appConfig.accessToken ?? '',
       clientId: appConfig.clientId,
     );
+  }
+
+  TwitchAuthentication getAuthInstance() {
+    return getInstance<TwitchAuthentication>();
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:unofficial_twitch_auth/twitch_authentication.dart';
 import 'package:unofficial_twitch_mobile/core/mixin/authentication_mixin.dart';
 import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/core/storage/extension/persistent_storage_extension.dart';
@@ -8,17 +6,13 @@ import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
-  final TwitchAuthentication authentication;
-
   String? _url;
 
   String? get url => _url;
 
   LoginWebViewViewModel({
     required RouteNavigation navigation,
-  })  : authentication =
-            Provider.of<TwitchAuthentication>(navigation.navigationContext),
-        super(
+  }) : super(
           navigation: navigation,
         );
 
@@ -34,7 +28,6 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
 
   void _handleStorageFlow(String accessTokenStorage) async {
     final isTokenValid = await validateToken(
-      authentication,
       accessToken: accessTokenStorage,
     );
 
@@ -47,7 +40,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
   }
 
   void _initLinkFlow() {
-    _url = authentication.getLoginLink(
+    _url = getAuthInstance().getLoginLink(
       clientId: appConfig.clientId,
       redirect: appConfig.redirect,
     );
@@ -91,12 +84,12 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
       persistData.writeAccessToken(appConfig.accessToken!);
     }
 
-    final isTokenValid = await validateToken(authentication);
+    final isTokenValid = await validateToken();
 
     if (isTokenValid) {
       navigation.pushNamed(NameRoute.home);
     } else {
-      revokeToken(authentication);
+      revokeToken();
 
       persistData.deleteAccessToken();
       navigation.pop();

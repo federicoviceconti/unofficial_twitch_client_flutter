@@ -23,7 +23,11 @@ abstract class BaseNotifier extends ChangeNotifier {
   }
 
   PersistentStorageData _getPersistentStorageData() {
-    return Provider.of<PersistentStorageData>(
+    return getInstance<PersistentStorageData>();
+  }
+
+  T getInstance<T>() {
+    return Provider.of<T>(
       navigation.navigationContext,
       listen: false,
     );

@@ -1,4 +1,3 @@
-import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
 import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_information_response.dart';
@@ -23,13 +22,7 @@ mixin TwitchManagerInformationMixin on BaseNotifier {
   }
 
   TwitchChannelInformation _getChannelInformation() {
-    final manager = Provider.of<TwitchManagerOpenApi>(
-      navigation.navigationContext,
-      listen: false,
-    );
-
-    return manager.of<TwitchChannelInformation>(
-      bearerToken: appConfig.accessToken,
-    );
+    return getInstance<TwitchManagerOpenApi>()
+        .of<TwitchChannelInformation>(bearerToken: appConfig.accessToken);
   }
 }
