@@ -50,4 +50,5 @@ void setup() {
 
 ## Additional information
 
-If you want a real example, see the main app "unofficial_twitch_mobile"
+If you want a real example, see
+the [main app](https://github.com/federicoviceconti/unofficial_twitch_client_flutter)
