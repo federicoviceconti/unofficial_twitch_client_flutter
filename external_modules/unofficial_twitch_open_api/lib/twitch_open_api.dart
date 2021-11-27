@@ -33,29 +33,31 @@ class TwitchManagerOpenApi {
   ///
   /// @return subclass of [BaseTwitchOpenApi]
   T of<T extends BaseTwitchOpenApi>({required String? bearerToken}) {
-    if (T == TwitchChannelInformation) {
-      return TwitchChannelInformationImpl(
-        clientId: clientId,
-        token: bearerToken,
-      ) as T;
-    } else if (T == TwitchSearch) {
-      return TwitchSearchImpl(
-        clientId: clientId,
-        token: bearerToken,
-      ) as T;
-    } else if (T == TwitchGame) {
-      return TwitchGameImpl(
-        clientId: clientId,
-        token: bearerToken,
-      ) as T;
-    } else if (T == TwitchChannelMedia) {
-      return TwitchChannelMediaImpl(
-        clientId: clientId,
-        token: bearerToken,
-      ) as T;
+    switch (T) {
+      case TwitchChannelInformation:
+        return TwitchChannelInformationImpl(
+          clientId: clientId,
+          token: bearerToken,
+        ) as T;
+      case TwitchSearch:
+        return TwitchSearchImpl(
+          clientId: clientId,
+          token: bearerToken,
+        ) as T;
+      case TwitchGame:
+        return TwitchGameImpl(
+          clientId: clientId,
+          token: bearerToken,
+        ) as T;
+      case TwitchChannelMedia:
+        return TwitchChannelMediaImpl(
+          clientId: clientId,
+          token: bearerToken,
+        ) as T;
+      default:
+        throw UnsupportedError(
+          'typeof($T) is not implemented in TwitchManagerOpenApi.getInstance',
+        );
     }
-
-    throw UnsupportedError(
-        'typeof($T) is not implemented in TwitchManagerOpenApi.getInstance');
   }
 }

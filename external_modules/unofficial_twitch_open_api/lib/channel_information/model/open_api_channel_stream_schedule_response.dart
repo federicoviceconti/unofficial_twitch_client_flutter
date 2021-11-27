@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
 
-class OpenApiChannelStreamSchedule extends BaseHttpResponse {
+class OpenApiChannelStreamScheduleResponse extends BaseHttpResponse {
   final List<SegmentResult> segmentResultList;
   final String? broadcasterId;
   final String? broadcasterName;
   final String? broadcasterLogin;
   final VacationResult? vacation;
 
-  OpenApiChannelStreamSchedule({
+  OpenApiChannelStreamScheduleResponse({
     this.segmentResultList = const [],
     this.broadcasterId,
     this.broadcasterName,
@@ -20,20 +20,20 @@ class OpenApiChannelStreamSchedule extends BaseHttpResponse {
     String? message,
   }): super(status: status, message: message);
 
-  static OpenApiChannelStreamSchedule fromHttpResponse(Response response) {
+  static OpenApiChannelStreamScheduleResponse fromHttpResponse(Response response) {
     final json = jsonDecode(response.body);
 
     if(json != null) {
-      return OpenApiChannelStreamSchedule.fromJson(json);
+      return OpenApiChannelStreamScheduleResponse.fromJson(json);
     } else {
-      return OpenApiChannelStreamSchedule(
+      return OpenApiChannelStreamScheduleResponse(
         status: response.statusCode,
         message: '',
       );
     }
   }
 
-  static OpenApiChannelStreamSchedule fromJson(Map<String, dynamic>? json) {
+  static OpenApiChannelStreamScheduleResponse fromJson(Map<String, dynamic>? json) {
     List<Map<String, dynamic>?>? segments = json?['data']?['segments'];
 
     final List<SegmentResult> segmentResultList = [];
@@ -47,7 +47,7 @@ class OpenApiChannelStreamSchedule extends BaseHttpResponse {
       }
     }
 
-    return OpenApiChannelStreamSchedule(
+    return OpenApiChannelStreamScheduleResponse(
       segmentResultList: segmentResultList,
       broadcasterId: json?['broadcaster_id'],
       broadcasterName: json?['broadcaster_name'],

@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
 
-class OpenApiChannelUserFollow extends BaseHttpResponse {
+class OpenApiChannelUserFollowResponse extends BaseHttpResponse {
   int? total;
   List<UserFollow> userFollowList;
   String? pagination;
 
-  OpenApiChannelUserFollow({
+  OpenApiChannelUserFollowResponse({
     int? status,
     String? message,
     this.pagination,
@@ -16,20 +16,20 @@ class OpenApiChannelUserFollow extends BaseHttpResponse {
     this.total,
   });
 
-  static OpenApiChannelUserFollow fromHttpResponse(Response response) {
+  static OpenApiChannelUserFollowResponse fromHttpResponse(Response response) {
     final json = jsonDecode(response.body);
 
     if (json != null) {
-      return OpenApiChannelUserFollow.fromJson(json);
+      return OpenApiChannelUserFollowResponse.fromJson(json);
     } else {
-      return OpenApiChannelUserFollow(
+      return OpenApiChannelUserFollowResponse(
         status: response.statusCode,
         message: '',
       );
     }
   }
 
-  static OpenApiChannelUserFollow fromJson(Map<String, dynamic>? json) {
+  static OpenApiChannelUserFollowResponse fromJson(Map<String, dynamic>? json) {
     List<dynamic>? data = json?['data'];
 
     final List<UserFollow> userFollowList = [];
@@ -43,7 +43,7 @@ class OpenApiChannelUserFollow extends BaseHttpResponse {
       }
     }
 
-    return OpenApiChannelUserFollow(
+    return OpenApiChannelUserFollowResponse(
       userFollowList: userFollowList,
       message: json?['message'],
       status: json?['status'],

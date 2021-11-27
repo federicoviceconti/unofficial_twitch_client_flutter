@@ -1,8 +1,8 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_information_response.dart';
-import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_stream_schedule.dart';
-import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_teams.dart';
-import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_user_follow.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_stream_schedule_response.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_teams_response.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_user_follow_response.dart';
 import 'package:unofficial_twitch_open_api/channel_information/twitch_channel_information.dart';
 import 'package:unofficial_twitch_open_api/core/open_api_channel_constants.dart';
 
@@ -29,13 +29,13 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
   }
 
   @override
-  Future<HttpResult<OpenApiChannelStreamSchedule>> getChannelStreamSchedule({
+  Future<HttpResult<OpenApiChannelStreamScheduleResponse>> getChannelStreamSchedule({
     required String broadcasterId,
   }) {
     return client.makeGet(
       OpenApiChannelConstants.channelStreamScheduleEndpoint,
       convertBodyFunc: (response) =>
-          OpenApiChannelStreamSchedule.fromHttpResponse(response),
+          OpenApiChannelStreamScheduleResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamBroadcasterId: broadcasterId,
       },
@@ -45,7 +45,7 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
   }
 
   @override
-  Future<HttpResult<OpenApiChannelUserFollow>> getUsersFollow({
+  Future<HttpResult<OpenApiChannelUserFollowResponse>> getUsersFollow({
     String? fromId,
     int? first,
     String? after,
@@ -54,7 +54,7 @@ class TwitchChannelInformationImpl extends TwitchChannelInformation {
     return client.makeGet(
       OpenApiChannelConstants.channelUsersFollowEndpoint,
       convertBodyFunc: (response) =>
-          OpenApiChannelUserFollow.fromHttpResponse(response),
+          OpenApiChannelUserFollowResponse.fromHttpResponse(response),
       queryParameters: {
         OpenApiChannelConstants.queryParamFromId: fromId,
         OpenApiChannelConstants.queryParamToId: toId,
