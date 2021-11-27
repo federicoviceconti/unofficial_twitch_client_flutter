@@ -3,6 +3,7 @@ import 'package:unofficial_twitch_http/models/http_result.dart';
 
 import 'models/auth_revoke_response.dart';
 import 'models/auth_validate_response.dart';
+import 'models/login_scope.dart';
 
 abstract class TwitchAuthentication {
   TwitchHttpClient get client;
@@ -10,6 +11,7 @@ abstract class TwitchAuthentication {
   String getLoginLink({
     required String clientId,
     required String redirect,
+    List<LoginScope> scopes = const [LoginScope.openId]
   });
 
   Future<HttpResult<AuthValidateResponse>> validate({

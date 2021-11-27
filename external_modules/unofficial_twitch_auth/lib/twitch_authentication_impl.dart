@@ -1,10 +1,10 @@
 import 'package:unofficial_twitch_http/models/environment.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_http/unofficial_twitch_http.dart';
-
 import 'constants.dart';
 import 'models/auth_revoke_response.dart';
 import 'models/auth_validate_response.dart';
+import 'models/login_scope.dart';
 import 'twitch_authentication.dart';
 
 class TwitchAuthenticationImpl extends TwitchAuthentication {
@@ -18,8 +18,9 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
   String getLoginLink({
     required String clientId,
     required String redirect,
+    List<LoginScope> scopes = const [LoginScope.openId],
   }) {
-    return '${TwitchAuthenticationConstants.baseUrl}/oauth2/authorize?client_id=$clientId&redirect_uri=$redirect&response_type=token+id_token&scope=openid';
+    return '${TwitchAuthenticationConstants.baseUrl}/oauth2/authorize?client_id=$clientId&redirect_uri=$redirect&response_type=token&scope=${_getScopes(scopes)}';
   }
 
   @override
@@ -47,5 +48,9 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
       },
       convertBodyFunc: (json) => AuthRevokeResponse.fromHttpResponse(json),
     );
+  }
+
+  List<String> _getScopes(List<LoginScope> scopes) {
+    return scopes.map((scope) => scope.name).toList();
   }
 }
