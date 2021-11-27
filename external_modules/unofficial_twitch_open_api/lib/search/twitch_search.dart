@@ -9,7 +9,7 @@ abstract class TwitchSearch extends BaseTwitchOpenApi {
 
   /// Docs: https://dev.twitch.tv/docs/api/reference#search-channels
   Future<HttpResult<OpenApiSearchChannelsResponse>> searchChannels({
-    String? query,
+    required String query,
     int? first,
     String? after,
     bool? isLive,
@@ -17,7 +17,7 @@ abstract class TwitchSearch extends BaseTwitchOpenApi {
 
   /// Docs: https://dev.twitch.tv/docs/api/reference#search-categories
   Future<HttpResult<OpenApiSearchCategoriesResponse>> searchCategories({
-    String? query,
+    required String query,
     int? first,
     String? after,
   });

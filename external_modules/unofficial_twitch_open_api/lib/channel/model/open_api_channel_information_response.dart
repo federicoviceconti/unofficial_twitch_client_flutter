@@ -20,8 +20,8 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
     return 'OpenApiChannelInformationResponse{channelList: $channelList}';
   }
 
-  static OpenApiChannelInformationResponse fromJson(Map<String, dynamic> json) {
-    List? data = json['data'];
+  static OpenApiChannelInformationResponse fromJson(Map<String, dynamic>? json) {
+    List? data = json?['data'];
 
     final channelInformationResults = <ChannelInformationResult>[];
 
@@ -36,8 +36,8 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
 
     return OpenApiChannelInformationResponse(
       channelList: channelInformationResults,
-      status: json['status'],
-      message: json['message'],
+      status: json?['status'],
+      message: json?['message'],
     );
   }
 

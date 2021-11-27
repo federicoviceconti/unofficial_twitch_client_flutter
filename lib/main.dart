@@ -11,11 +11,11 @@ import 'package:unofficial_twitch_mobile/utils/app_theme.dart';
 import 'package:unofficial_twitch_open_api/twitch_open_api.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const UnofficialTwitchClientApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class UnofficialTwitchClientApp extends StatelessWidget {
+  const UnofficialTwitchClientApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

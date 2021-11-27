@@ -15,8 +15,8 @@ class OpenApiSearchUsersResponse extends BaseHttpResponse {
           message: message,
         );
 
-  static OpenApiSearchUsersResponse fromJson(Map<String, dynamic> json) {
-    List? data = json['data'];
+  static OpenApiSearchUsersResponse fromJson(Map<String, dynamic>? json) {
+    List? data = json?['data'];
 
     final searchUserList = <SearchUser>[];
 
@@ -28,8 +28,8 @@ class OpenApiSearchUsersResponse extends BaseHttpResponse {
 
     return OpenApiSearchUsersResponse(
       searchUserList: searchUserList,
-      status: json['status'],
-      message: json['message'],
+      status: json?['status'],
+      message: json?['message'],
     );
   }
 

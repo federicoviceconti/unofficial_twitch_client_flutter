@@ -1,48 +1,48 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
+import 'package:http/http.dart';
 
-class OpenApiSearchCategoriesResponse extends BaseHttpResponse {
-  final List<SearchCategory> searchCategoryList;
+class OpenApiGetGameResponse extends BaseHttpResponse {
+  final List<GameData> gameList;
   final String? pagination;
 
-  OpenApiSearchCategoriesResponse({
+  OpenApiGetGameResponse({
     int? status,
     String? message,
-    this.searchCategoryList = const [],
+    this.gameList = const [],
     this.pagination,
   }) : super(
     status: status,
     message: message,
   );
 
-  static OpenApiSearchCategoriesResponse fromJson(Map<String, dynamic>? json) {
+  static OpenApiGetGameResponse fromJson(Map<String, dynamic>? json) {
     List? data = json?['data'];
 
-    final searchCategoryList = <SearchCategory>[];
+    final topGameList = <GameData>[];
 
     if (data != null) {
       for (var item in data) {
-        searchCategoryList.add(SearchCategory.fromJson(item));
+        topGameList.add(GameData.fromJson(item));
       }
     }
 
-    return OpenApiSearchCategoriesResponse(
-      searchCategoryList: searchCategoryList,
+    return OpenApiGetGameResponse(
+      gameList: topGameList,
       pagination: json?['pagination']?['cursor'],
       status: json?['status'],
       message: json?['message'],
     );
   }
 
-  static OpenApiSearchCategoriesResponse fromHttpResponse(Response response) {
+  static OpenApiGetGameResponse fromHttpResponse(Response response) {
     final json = jsonDecode(response.body);
 
     if(json != null) {
-      return OpenApiSearchCategoriesResponse.fromJson(json);
+      return OpenApiGetGameResponse.fromJson(json);
     } else {
-      return OpenApiSearchCategoriesResponse(
+      return OpenApiGetGameResponse(
         status: response.statusCode,
         message: '',
       );
@@ -50,19 +50,19 @@ class OpenApiSearchCategoriesResponse extends BaseHttpResponse {
   }
 }
 
-class SearchCategory {
+class GameData {
   final String? id;
   final String? name;
   final String? boxArtUrl;
 
-  SearchCategory({
+  GameData({
     this.id,
     this.name,
     this.boxArtUrl,
   });
 
-  static SearchCategory fromJson(Map<String, dynamic> json) {
-    return SearchCategory(
+  static GameData fromJson(Map<String, dynamic> json) {
+    return GameData(
       name: json['name'],
       boxArtUrl: json['box_art_url'],
       id: json['id'],

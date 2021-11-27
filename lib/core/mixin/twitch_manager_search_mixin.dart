@@ -15,14 +15,14 @@ mixin TwitchManagerSearchMixin on BaseNotifier {
   }
 
   Future<HttpResult<OpenApiSearchChannelsResponse>> searchChannels({
-    required String? query,
+    required String query,
   }) {
     final instance = _getSearch();
     return instance.searchChannels(query: query);
   }
 
   Future<HttpResult<OpenApiSearchCategoriesResponse>> searchCategories({
-    required String? query,
+    required String query,
   }) {
     final instance = _getSearch();
     return instance.searchCategories(query: query);

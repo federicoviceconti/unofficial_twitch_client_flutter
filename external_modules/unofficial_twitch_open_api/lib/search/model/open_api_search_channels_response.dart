@@ -22,8 +22,8 @@ class OpenApiSearchChannelsResponse extends BaseHttpResponse {
     return 'OpenApiSearchChannelsResponse{searchChannelList: $searchChannelList, pagination: $pagination}';
   }
 
-  static OpenApiSearchChannelsResponse fromJson(Map<String, dynamic> json) {
-    List? data = json['data'];
+  static OpenApiSearchChannelsResponse fromJson(Map<String, dynamic>? json) {
+    List? data = json?['data'];
 
     final searchChannelList = <SearchChannel>[];
 
@@ -35,9 +35,9 @@ class OpenApiSearchChannelsResponse extends BaseHttpResponse {
 
     return OpenApiSearchChannelsResponse(
       searchChannelList: searchChannelList,
-      pagination: json['pagination']?['cursor'],
-      status: json['status'],
-      message: json['message'],
+      pagination: json?['pagination']?['cursor'],
+      status: json?['status'],
+      message: json?['message'],
     );
   }
 

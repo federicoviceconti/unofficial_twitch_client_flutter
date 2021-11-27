@@ -6,6 +6,8 @@ class OpenApiChannelConstants {
   static const String searchCategoriesEndpoint = '/helix/search/categories';
   static const String searchUsersEndpoint = '/helix/users';
   static const String getChannelTeamsEndpoint = '/helix/teams/channel';
+  static const String getTopGameEndpoint = '/helix/games/top';
+  static const String getGameEndpoint = '/helix/games';
 
   static const String queryParamBroadcasterId = 'broadcaster_id';
   static const String queryParamFromId = 'from_id';
@@ -16,4 +18,5 @@ class OpenApiChannelConstants {
   static const String queryParamIsLive = 'is_live';
   static const String queryParamId = 'id';
   static const String queryParamLogin = 'login';
+  static const String queryParamName = 'name';
 }
