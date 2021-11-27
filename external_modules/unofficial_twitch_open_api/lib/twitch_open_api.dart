@@ -1,5 +1,7 @@
-import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
-import 'package:unofficial_twitch_open_api/channel/twitch_channel_information_impl.dart';
+import 'package:unofficial_twitch_open_api/channel_information/twitch_channel_information.dart';
+import 'package:unofficial_twitch_open_api/channel_information/twitch_channel_information_impl.dart';
+import 'package:unofficial_twitch_open_api/channel_media/twitch_channel_media.dart';
+import 'package:unofficial_twitch_open_api/channel_media/twitch_channel_media_impl.dart';
 import 'package:unofficial_twitch_open_api/core/base_twitch_open_api.dart';
 import 'package:unofficial_twitch_open_api/game/twitch_game.dart';
 import 'package:unofficial_twitch_open_api/game/twitch_game_impl.dart';
@@ -25,6 +27,7 @@ class TwitchManagerOpenApi {
   /// Return an instance of subclass [BaseTwitchOpenApi]
   /// Class type available:
   /// - [TwitchChannelInformation]
+  /// - [TwitchChannelMedia]
   /// - [TwitchSearch]
   /// - [TwitchGame]
   ///
@@ -42,6 +45,11 @@ class TwitchManagerOpenApi {
       ) as T;
     } else if (T == TwitchGame) {
       return TwitchGameImpl(
+        clientId: clientId,
+        token: bearerToken,
+      ) as T;
+    } else if (T == TwitchChannelMedia) {
+      return TwitchChannelMediaImpl(
         clientId: clientId,
         token: bearerToken,
       ) as T;

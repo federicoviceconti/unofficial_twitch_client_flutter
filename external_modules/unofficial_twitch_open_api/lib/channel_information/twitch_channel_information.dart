@@ -1,7 +1,7 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_information_response.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_stream_schedule.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_user_follow.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_information_response.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_stream_schedule.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_user_follow.dart';
 import 'package:unofficial_twitch_open_api/core/base_twitch_open_api.dart';
 
 abstract class TwitchChannelInformation extends BaseTwitchOpenApi {

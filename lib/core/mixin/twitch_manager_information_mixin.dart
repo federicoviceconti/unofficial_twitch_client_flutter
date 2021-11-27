@@ -1,9 +1,9 @@
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_information_response.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_user_follow.dart';
-import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_information_response.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_user_follow.dart';
+import 'package:unofficial_twitch_open_api/channel_information/twitch_channel_information.dart';
 import 'package:unofficial_twitch_open_api/unofficial_twitch_open_api.dart';
 
 mixin TwitchManagerInformationMixin on BaseNotifier {

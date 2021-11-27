@@ -1,10 +1,10 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_information_response.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_stream_schedule.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_teams.dart';
-import 'package:unofficial_twitch_open_api/channel/model/open_api_channel_user_follow.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_information_response.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_stream_schedule.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_teams.dart';
+import 'package:unofficial_twitch_open_api/channel_information/model/open_api_channel_user_follow.dart';
+import 'package:unofficial_twitch_open_api/channel_information/twitch_channel_information.dart';
 import 'package:unofficial_twitch_open_api/core/open_api_channel_constants.dart';
-import 'package:unofficial_twitch_open_api/channel/twitch_channel_information.dart';
 
 class TwitchChannelInformationImpl extends TwitchChannelInformation {
   TwitchChannelInformationImpl({

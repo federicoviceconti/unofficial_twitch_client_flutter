@@ -1,7 +1,6 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_open_api/core/open_api_channel_constants.dart';
 import 'package:unofficial_twitch_open_api/game/model/open_api_get_game_response.dart';
-import 'package:unofficial_twitch_open_api/game/model/open_api_get_top_game_response.dart';
 import 'package:unofficial_twitch_open_api/game/twitch_game.dart';
 
 class TwitchGameImpl extends TwitchGame {
@@ -23,11 +22,11 @@ class TwitchGameImpl extends TwitchGame {
   }
 
   @override
-  Future<HttpResult<OpenApiGetTopGameResponse>> getTopGame() {
+  Future<HttpResult<OpenApiGetGameResponse>> getTopGame() {
     return client.makeGet(
       OpenApiChannelConstants.getTopGameEndpoint,
       convertBodyFunc: (response) =>
-          OpenApiGetTopGameResponse.fromHttpResponse(response),
+          OpenApiGetGameResponse.fromHttpResponse(response),
       bearerToken: token,
       clientId: clientId,
     );

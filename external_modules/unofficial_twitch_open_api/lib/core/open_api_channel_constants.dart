@@ -8,6 +8,14 @@ class OpenApiChannelConstants {
   static const String getChannelTeamsEndpoint = '/helix/teams/channel';
   static const String getTopGameEndpoint = '/helix/games/top';
   static const String getGameEndpoint = '/helix/games';
+  static const String getChannelChatBadgesEndpoint = '/helix/chat/badges';
+  static const String getChannelEmotesEndpoint = '/helix/chat/emotes';
+  static const String getEmoteSetsEndpoint = '/helix/chat/emotes/set';
+  static const String getGlobalChatBadgesEndpoint = '/helix/chat/badges/global';
+  static const String getGlobalEmotesEndpoint = '/helix/chat/emotes/global';
+  static const String getCheermotesEndpoint = '/helix/bits/cheermotes';
+  static const String getClipsEndpoint = '/helix/clips';
+  static const String getVideosEndpoint = '/helix/videos';
 
   static const String queryParamBroadcasterId = 'broadcaster_id';
   static const String queryParamFromId = 'from_id';
@@ -19,4 +27,11 @@ class OpenApiChannelConstants {
   static const String queryParamId = 'id';
   static const String queryParamLogin = 'login';
   static const String queryParamName = 'name';
+  static const String queryParamEmoteSetId = 'emote_set_id';
+  static const String queryParamUserId = 'user_id';
+  static const String queryParamBefore = 'before';
+  static const String queryParamLanguage = 'language';
+  static const String queryParamPeriod = 'period';
+  static const String queryParamSort = 'sort';
+  static const String queryParamType = 'type';
 }
