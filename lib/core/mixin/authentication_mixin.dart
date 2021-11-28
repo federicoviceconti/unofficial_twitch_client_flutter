@@ -5,16 +5,22 @@ mixin AuthenticationMixin on BaseNotifier {
   Future<bool> validateToken({
     String? accessToken,
   }) async {
-    final validateResponse = await getAuthInstance().validate(
-      accessToken: accessToken ?? appConfig.accessToken ?? '',
-    );
+    final tokenToStore = accessToken ?? appConfig.accessToken ?? '';
 
-    final hasError = validateResponse.result?.hasError ?? true;
-    if(!hasError) {
-      appConfig.update(accessToken: accessToken);
+    if(tokenToStore.isEmpty) {
+      return false;
+    } else {
+      final validateResponse = await getAuthInstance().validate(
+        accessToken: tokenToStore,
+      );
+
+      final hasError = validateResponse.result?.hasError ?? true;
+      if(!hasError) {
+        appConfig.update(accessToken: tokenToStore);
+      }
+
+      return !hasError;
     }
-
-    return !hasError;
   }
 
   void revokeToken() async {
