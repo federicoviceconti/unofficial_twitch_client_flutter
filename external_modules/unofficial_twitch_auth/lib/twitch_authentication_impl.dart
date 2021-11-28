@@ -24,9 +24,8 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
   }
 
   @override
-  Future<HttpResult<AuthValidateResponse>> validate({
-    required String accessToken
-  }) async {
+  Future<HttpResult<AuthValidateResponse>> validate(
+      {required String accessToken}) async {
     return await client.makeGet<AuthValidateResponse>(
       TwitchAuthenticationConstants.validateEndpoint,
       bearerToken: accessToken,
@@ -50,7 +49,9 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
     );
   }
 
-  List<String> _getScopes(List<LoginScope> scopes) {
-    return scopes.map((scope) => scope.name).toList();
+  String _getScopes(List<LoginScope> scopes) {
+    return scopes
+        .map((scope) => scope.name)
+        .reduce((value, element) => '$value $element');
   }
 }

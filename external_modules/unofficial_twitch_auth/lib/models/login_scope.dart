@@ -41,7 +41,7 @@ enum LoginScope {
 
 extension LoginScopeExt on LoginScope {
   String get name => {
-    LoginScope.openId: 'open_id',
+    LoginScope.openId: 'openid',
     LoginScope.analyticsReadExtensions: 'analytics:read:extensions',
     LoginScope.analyticsReadGames: 'analytics:read:games',
     LoginScope.bitsRead: 'bits:read',
