@@ -37,3 +37,4 @@ This app depends on the following packages:
 - [unofficial_twitch_http](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_http)
 - [unofficial_twitch_navigation](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_navigation)
 - [unofficial_twitch_open_api](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_open_api)
+- [unofficial_twitch_store_local](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_store_local)

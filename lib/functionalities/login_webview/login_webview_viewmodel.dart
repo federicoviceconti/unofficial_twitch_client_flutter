@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:unofficial_twitch_mobile/core/mixin/authentication_mixin.dart';
-import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
-import 'package:unofficial_twitch_mobile/core/storage/extension/persistent_storage_extension.dart';
+import 'package:unofficial_twitch_mobile/core/navigation/route_navigation.dart';
 import 'package:unofficial_twitch_mobile/utils/notifier/base_notifier.dart';
+import 'package:unofficial_twitch_store_local/local_storage/extension/twitch_persistent_storage_extension.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {

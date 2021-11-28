@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_mobile/core/config/app_config.dart';
-import 'package:unofficial_twitch_mobile/core/navigation/home/route_navigation.dart';
-import 'package:unofficial_twitch_mobile/core/storage/persistent_storage_data.dart';
+import 'package:unofficial_twitch_mobile/core/navigation/route_navigation.dart';
+import 'package:unofficial_twitch_store_local/unofficial_twitch_store_local.dart';
 
 abstract class BaseNotifier extends ChangeNotifier {
   RouteNavigation navigation;
 
   AppConfig get appConfig => _getAppConfig();
 
-  PersistentStorageData get persistData => _getPersistentStorageData();
+  TwitchPersistentStorageData get persistData => _getPersistentStorageData();
 
   BaseNotifier({
     required this.navigation,
@@ -22,8 +22,8 @@ abstract class BaseNotifier extends ChangeNotifier {
     );
   }
 
-  PersistentStorageData _getPersistentStorageData() {
-    return getInstance<PersistentStorageData>();
+  TwitchPersistentStorageData _getPersistentStorageData() {
+    return getInstance<TwitchPersistentStorageData>();
   }
 
   T getInstance<T>() {

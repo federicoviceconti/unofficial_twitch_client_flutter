@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:unofficial_twitch_mobile/core/storage/persistent_storage_data.dart';
+import 'package:unofficial_twitch_store_local/local_storage/twitch_persistent_storage_data.dart';
 
-class TwitchStorageData extends PersistentStorageData {
+class TwitchStorageData extends TwitchPersistentStorageData {
   final FlutterSecureStorage storage = const FlutterSecureStorage();
 
   static final TwitchStorageData _instance = TwitchStorageData._internal();

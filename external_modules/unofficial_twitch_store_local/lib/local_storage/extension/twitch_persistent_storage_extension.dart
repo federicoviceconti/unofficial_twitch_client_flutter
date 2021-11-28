@@ -1,6 +1,6 @@
-import '../persistent_storage_data.dart';
+import '../twitch_persistent_storage_data.dart';
 
-extension PersistentStorageDataExt on PersistentStorageData {
+extension TwitchPersistentStorageDataExt on TwitchPersistentStorageData {
   Future<String?> get accessToken async =>
       await read(PersistDataType.accessToken.key);
 
