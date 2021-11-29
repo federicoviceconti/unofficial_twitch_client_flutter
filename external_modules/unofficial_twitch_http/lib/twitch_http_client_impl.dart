@@ -83,7 +83,8 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
       return HttpResult(
         result: convertFunc(response),
       );
-    } catch (e) {
+    } on Exception catch (e) {
+      _logException(e, method: method, path: path);
       return Future.value(
         HttpResult<T>(
           error: ErrorHttpResponse(),
@@ -149,7 +150,9 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Map<String, dynamic>? body,
     http.Response response,
   ) {
-    debugPrint("|==REQUEST\n|__$method $uri\n|__headers: $headers");
+    debugPrint("\n|==REQUEST");
+    debugPrint("|__$method $uri");
+    debugPrint("|__headers: $headers");
 
     if (body != null) {
       debugPrint("|__Body: $body");
@@ -157,6 +160,10 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
 
     debugPrint("|==RESPONSE");
     debugPrint("|__Code: ${response.statusCode}");
-    debugPrint("|__Body: ${response.body}");
+    debugPrint("|__Body: ${response.body}\n");
+  }
+
+  void _logException(Exception e, {String? method, String? path}) {
+    debugPrint("\n|==EXCEPTION\n|__$method: $path\n|__Exception:$e\n");
   }
 }

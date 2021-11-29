@@ -54,9 +54,9 @@ class CheermoteData {
   final String? prefix;
   final List<CheermoteTierData> tiers;
   final String? type;
-  final String? order;
+  final int? order;
   final String? lastUpdated;
-  final String? isCharitable;
+  final bool? isCharitable;
 
   CheermoteData({
     this.prefix,
@@ -82,12 +82,12 @@ class CheermoteData {
 }
 
 class CheermoteTierData {
-  final String? minBits;
+  final int? minBits;
   final String? id;
   final String? color;
   final CheermoteImage? images;
-  final String? canCheer;
-  final String? showInBitsCard;
+  final bool? canCheer;
+  final bool? showInBitsCard;
 
   CheermoteTierData({
     this.minBits,

@@ -62,7 +62,7 @@ class ClipsData {
   final int? viewCount;
   final String? createdAt;
   final String? thumbnailUrl;
-  final int? duration;
+  final double? duration;
 
   ClipsData({
     this.id,
@@ -85,6 +85,8 @@ class ClipsData {
   static ClipsData? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
 
+    final duration = json['duration'];
+
     return ClipsData(
       id: json['id'],
       url: json['url'],
@@ -100,7 +102,7 @@ class ClipsData {
       viewCount: json['view_count'],
       createdAt: json['created_at'],
       thumbnailUrl: json['thumbnail_url'],
-      duration: json['duration'],
+      duration: duration is double ? duration : (duration as int?)?.toDouble(),
     );
   }
 }
