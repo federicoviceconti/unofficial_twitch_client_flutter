@@ -1,5 +1,6 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_open_api/core/open_api_channel_constants.dart';
+import 'package:unofficial_twitch_open_api/search/model/open_api_get_streams_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_categories_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_channels_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_users_response.dart';
@@ -65,6 +66,34 @@ class TwitchSearchImpl extends TwitchSearch {
       queryParameters: {
         OpenApiChannelConstants.queryParamId: id?.toString(),
         OpenApiChannelConstants.queryParamLogin: login,
+      },
+      bearerToken: token,
+      clientId: clientId,
+    );
+  }
+
+  @override
+  Future<HttpResult<OpenApiGetStreamsResponse>> searchStreams({
+    String? after,
+    String? before,
+    int? first,
+    String? gameId,
+    String? language,
+    String? userId,
+    String? userLogin,
+  }) {
+    return client.makeGet(
+      OpenApiChannelConstants.getStreamsEndpoint,
+      convertBodyFunc: (response) =>
+          OpenApiGetStreamsResponse.fromHttpResponse(response),
+      queryParameters: {
+        OpenApiChannelConstants.queryParamAfter: after,
+        OpenApiChannelConstants.queryParamBefore: before,
+        OpenApiChannelConstants.queryParamFirst: first?.toString(),
+        OpenApiChannelConstants.queryParamGameId: gameId,
+        OpenApiChannelConstants.queryParamLanguage: language,
+        OpenApiChannelConstants.queryParamUserId: userId,
+        OpenApiChannelConstants.queryParamUserLogin: userLogin,
       },
       bearerToken: token,
       clientId: clientId,

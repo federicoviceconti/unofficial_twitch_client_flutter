@@ -17,9 +17,7 @@ class HomeScreenViewModel extends BaseNotifier
 
   void init() {}
 
-  void onTapInfo() async {
-
-  }
+  void onTapInfo() async {}
 
   void onTapSearch() async {}
 }

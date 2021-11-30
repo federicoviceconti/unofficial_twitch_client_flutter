@@ -1,5 +1,6 @@
 import 'package:unofficial_twitch_http/models/http_result.dart';
 import 'package:unofficial_twitch_open_api/core/base_twitch_open_api.dart';
+import 'package:unofficial_twitch_open_api/search/model/open_api_get_streams_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_categories_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_channels_response.dart';
 import 'package:unofficial_twitch_open_api/search/model/open_api_search_users_response.dart';
@@ -26,5 +27,16 @@ abstract class TwitchSearch extends BaseTwitchOpenApi {
   Future<HttpResult<OpenApiSearchUsersResponse>> searchUser({
     int? id,
     String? login,
+  });
+
+  /// Docs: https://dev.twitch.tv/docs/api/reference#get-streams
+  Future<HttpResult<OpenApiGetStreamsResponse>> searchStreams({
+    final String? after,
+    final String? before,
+    final int? first,
+    final String? gameId,
+    final String? language,
+    final String? userId,
+    final String? userLogin,
   });
 }

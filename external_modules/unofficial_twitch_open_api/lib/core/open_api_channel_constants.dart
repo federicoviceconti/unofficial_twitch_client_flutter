@@ -16,6 +16,7 @@ class OpenApiChannelConstants {
   static const String getCheermotesEndpoint = '/helix/bits/cheermotes';
   static const String getClipsEndpoint = '/helix/clips';
   static const String getVideosEndpoint = '/helix/videos';
+  static const String getStreamsEndpoint = '/helix/streams';
 
   static const String queryParamBroadcasterId = 'broadcaster_id';
   static const String queryParamFromId = 'from_id';
@@ -34,4 +35,6 @@ class OpenApiChannelConstants {
   static const String queryParamPeriod = 'period';
   static const String queryParamSort = 'sort';
   static const String queryParamType = 'type';
+  static const String queryParamGameId = 'game_id';
+  static const String queryParamUserLogin = 'user_login';
 }
