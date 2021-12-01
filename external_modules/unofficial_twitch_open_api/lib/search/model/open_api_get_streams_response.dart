@@ -68,7 +68,7 @@ class StreamData {
   final String? language;
   final String? thumbnailUrl;
   final List<String>? tagIds;
-  final String? isMature;
+  final bool? isMature;
 
   StreamData({
     this.id,
@@ -90,6 +90,8 @@ class StreamData {
   static StreamData? fromJson(Map<String, dynamic>? json) {
     if (json == null) return null;
 
+    final tagIds = json['tags_ids']?.map((it) => it).toList();
+
     return StreamData(
       id: json['id'],
       userId: json['user_id'],
@@ -103,7 +105,7 @@ class StreamData {
       startedAt: json['started_at'],
       language: json['language'],
       thumbnailUrl: json['thumbnail_url'],
-      tagIds: json['tag_ids'],
+      tagIds: tagIds,
       isMature: json['is_mature'],
     );
   }
