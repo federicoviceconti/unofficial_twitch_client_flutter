@@ -1,7 +1,8 @@
 name: unofficial_twitch_store_local
 description: Persistent data storage made for the unofficial Twitch client
 version: 0.0.1
-homepage:
+homepage: https://www.federicoviceconti.com
+publish_to: 'none'
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

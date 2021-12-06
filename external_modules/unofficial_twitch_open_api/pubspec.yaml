@@ -1,7 +1,8 @@
 name: unofficial_twitch_open_api
 description: Unofficial Twitch API with open scope
 version: 0.0.1
-homepage:
+homepage: https://www.federicoviceconti.com
+publish_to: 'none'
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

@@ -1,6 +1,7 @@
 name: unofficial_twitch_mobile
 description: An unofficial Flutter client, which use the newest Twitch API
 publish_to: 'none'
+homepage: https://www.federicoviceconti.com
 version: 1.0.0+1
 
 environment:

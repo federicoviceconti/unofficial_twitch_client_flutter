@@ -2,6 +2,7 @@ name: unofficial_twitch_auth
 description: Unofficial twitch auth
 version: 0.0.1
 publish_to: 'none'
+homepage: https://www.federicoviceconti.com
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
