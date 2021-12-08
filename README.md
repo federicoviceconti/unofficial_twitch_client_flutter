@@ -23,7 +23,7 @@ In order to make it work the newest Twitch API, we need to set: client_id, redir
 environment variables via "--dart-define" arguments.
 
 Example:
-flutter run --dart-define=CLIENT_ID={client_id} --dart-define=REDIRECT={redirect}
+flutter run --dart-define=CLIENT_ID={client_id} --dart-define=REDIRECT={redirect} (For the redirect you can use for example http://localhost)
 
 This variable, will be set on
 the [lib/main.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/lib/main.dart#L42)
