@@ -4,8 +4,6 @@ An unofficial Flutter client, which use the newest Twitch API and provider for s
 
 Support null safety!
 
-[WIP] The project is under development and could change
-
 ## Configuration
 
 ### Create an app on Twitch Dev console
