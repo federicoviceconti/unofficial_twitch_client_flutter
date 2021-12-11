@@ -1,10 +1,10 @@
-# unofficial_twitch_mobile
+# 🏆 unofficial_twitch_mobile
 
 An unofficial Flutter client, which use the newest Twitch API and provider for state management.
 
 Support null safety!
 
-## Configuration
+## 💻 Configuration
 
 ### Create an app on Twitch Dev console
 
@@ -27,7 +27,7 @@ This variable, will be set on
 the [lib/main.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/lib/main.dart#L42)
 file.
 
-### External packages
+### 📦 External packages
 
 This app depends on the following packages:
 
