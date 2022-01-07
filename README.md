@@ -34,7 +34,7 @@ file.
 
 ### 📦 External packages
 
-This app depends on the following packages:
+This app depends on the following packages (you can find them on the external_modules folder):
 
 - [unofficial_twitch_auth](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_auth)
 - [unofficial_twitch_http](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_http)
