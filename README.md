@@ -1,12 +1,10 @@
-# unofficial_twitch_mobile
+# 🏆 unofficial_twitch_mobile
 
 An unofficial Flutter client, which use the newest Twitch API and provider for state management.
 
 Support null safety!
 
-[WIP] The project is under development and could change
-
-## Configuration
+## 💻 Configuration
 
 ### Create an app on Twitch Dev console
 
@@ -22,16 +20,21 @@ token (don't share to anyone!)
 In order to make it work the newest Twitch API, we need to set: client_id, redirect. This app use
 environment variables via "--dart-define" arguments.
 
-Example:
+**Example:**
+```
 flutter run --dart-define=CLIENT_ID={client_id} --dart-define=REDIRECT={redirect}
+```
+
+For the redirect you can use for example http://localhost.
+The Client ID is the one generated on the Twitch Dev console.
 
 This variable, will be set on
 the [lib/main.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/lib/main.dart#L42)
 file.
 
-### External packages
+### 📦 External packages
 
-This app depends on the following packages:
+This app depends on the following packages (you can find them on the external_modules folder):
 
 - [unofficial_twitch_auth](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_auth)
 - [unofficial_twitch_http](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/tree/master/external_modules/unofficial_twitch_http)
