@@ -12,9 +12,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
 
   LoginWebViewViewModel({
     required RouteNavigation navigation,
-  }) : super(
-          navigation: navigation,
-        );
+  }) : super(navigation: navigation);
 
   init() async {
     final accessTokenStorage = await persistData.accessToken;
@@ -40,10 +38,7 @@ class LoginWebViewViewModel extends BaseNotifier with AuthenticationMixin {
   }
 
   void _initLinkFlow() {
-    _url = getAuthInstance().getLoginLink(
-      clientId: appConfig.clientId,
-      redirect: appConfig.redirect,
-    );
+    _url = getUrlLogin();
 
     notifyListeners();
   }

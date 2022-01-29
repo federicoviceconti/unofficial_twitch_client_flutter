@@ -47,10 +47,7 @@ class UnofficialTwitchClientApp extends StatelessWidget {
         value: TwitchStorageData(),
       ),
       Provider<AppConfig>.value(
-        value: TwitchAppConfig(
-          clientId: clientId,
-          redirect: const String.fromEnvironment('REDIRECT'),
-        ),
+        value: _getAppConfig(clientId),
       ),
       Provider.value(
         value: RouteNavigation(),
@@ -64,5 +61,14 @@ class UnofficialTwitchClientApp extends StatelessWidget {
         ),
       ),
     ];
+  }
+
+  TwitchAppConfig _getAppConfig(String clientId) {
+    final appConfig = TwitchAppConfig(
+      clientId: clientId,
+      redirect: const String.fromEnvironment('REDIRECT'),
+    );
+
+    return appConfig;
   }
 }

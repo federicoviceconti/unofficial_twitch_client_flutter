@@ -33,4 +33,11 @@ mixin AuthenticationMixin on BaseNotifier {
   TwitchAuthentication getAuthInstance() {
     return getInstance<TwitchAuthentication>();
   }
+
+  String getUrlLogin() {
+    return getAuthInstance().getLoginLink(
+      clientId: appConfig.clientId,
+      redirect: appConfig.redirect,
+    );
+  }
 }
