@@ -4,6 +4,11 @@ An unofficial Flutter client, which use the newest Twitch API and provider for s
 
 Support null safety!
 
+Now available on pub.dev:
+- unofficial_twitch_open_api: https://pub.dev/packages/unofficial_twitch_open_api
+- unofficial_twitch_auth: https://pub.dev/packages/unofficial_twitch_auth
+- unofficial_twitch_http: https://pub.dev/packages/unofficial_twitch_http
+
 ## 💻 Configuration
 
 ### Create an app on Twitch Dev console
