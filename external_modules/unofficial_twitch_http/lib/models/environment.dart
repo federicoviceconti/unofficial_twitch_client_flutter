@@ -1,3 +1,4 @@
+/// Bundle that is used to define all the information needed for the client
 class EnvironmentBundle {
   final String basePath;
 
@@ -5,5 +6,3 @@ class EnvironmentBundle {
     required this.basePath,
   });
 }
-
-enum Environment { mockHttp, staging, prod }

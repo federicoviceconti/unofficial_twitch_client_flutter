@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:unofficial_twitch_http/models/http_method.dart';
 import 'package:unofficial_twitch_http/twitch_http_client.dart';
 
 import 'models/environment.dart';
@@ -27,7 +28,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     String? clientId,
   }) {
     return _makeRequest(
-      method: 'GET',
+      method: HttpMethod.get,
       path: path,
       convertFunc: convertBodyFunc,
       headers: headers,
@@ -48,7 +49,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     String? clientId,
   }) {
     return _makeRequest(
-      method: 'POST',
+      method: HttpMethod.post,
       path: path,
       convertFunc: convertBodyFunc,
       headers: headers,
@@ -60,7 +61,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
   }
 
   Future<HttpResult<T>> _makeRequest<T extends BaseHttpResponse>({
-    required String method,
+    required HttpMethod method,
     required String path,
     required T Function(http.Response) convertFunc,
     Map<String, String>? headers,
@@ -95,7 +96,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
 
   Future<http.Response> _makeRequestByMethod(
     String path,
-    String method,
+    HttpMethod method,
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
@@ -121,13 +122,13 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     Response? response;
 
     switch (method) {
-      case 'GET':
+      case HttpMethod.get:
         response = await http.get(
           uri,
           headers: headers,
         );
         break;
-      case 'POST':
+      case HttpMethod.post:
         response = await http.post(
           uri,
           headers: headers,
@@ -144,7 +145,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
   }
 
   void _logResponse(
-    String method,
+    HttpMethod method,
     Uri uri,
     Map<String, String>? headers,
     Map<String, dynamic>? body,
@@ -163,7 +164,7 @@ class TwitchHttpClientImpl extends TwitchHttpClient {
     debugPrint("|__Body: ${response.body}\n");
   }
 
-  void _logException(Exception e, {String? method, String? path}) {
+  void _logException(Exception e, {HttpMethod? method, String? path}) {
     debugPrint("\n|==EXCEPTION\n|__$method: $path\n|__Exception:$e\n");
   }
 }

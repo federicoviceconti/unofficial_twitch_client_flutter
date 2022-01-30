@@ -1,3 +1,7 @@
+/// Contains the result of the HTTP operation.
+///
+/// The [result] is not null when the request succeed
+/// The [error] is not null when the request fails
 class HttpResult<T extends BaseHttpResponse> {
   final T? result;
   final ErrorHttpResponse? error;
@@ -22,11 +26,6 @@ class BaseHttpResponse {
     this.status,
     this.message,
   });
-
-  BaseHttpResponse.genericErrorResponse({
-    this.status = 500,
-    this.message = 'Generic error',
-  });
 }
 
 class ErrorHttpResponse {}
@@ -40,7 +39,7 @@ enum ErrorReason {
 extension InvalidErrorReasonStringExt on String {
   ErrorReason? get reason =>
       {
-        'Invalid token': ErrorReason.invalidToken,
+        'invalid token': ErrorReason.invalidToken,
         'missing client id': ErrorReason.missingClient,
-      }[this];
+      }[toLowerCase()];
 }

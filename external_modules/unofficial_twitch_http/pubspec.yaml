@@ -1,7 +1,6 @@
 name: unofficial_twitch_http
 description: HTTP module for unofficial_twitch_mobile project.
 version: 0.0.1
-publish_to: 'none'
 homepage: https://www.federicoviceconti.com
 
 environment:
