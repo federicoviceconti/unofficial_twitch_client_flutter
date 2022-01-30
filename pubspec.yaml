@@ -11,10 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  unofficial_twitch_auth:
-    path: ./external_modules/unofficial_twitch_auth
-  unofficial_twitch_http:
-    path: ./external_modules/unofficial_twitch_http
+  unofficial_twitch_auth: ^0.0.1
+  unofficial_twitch_http: ^0.0.1
   unofficial_twitch_navigation:
     path: ./external_modules/unofficial_twitch_navigation
   unofficial_twitch_open_api:

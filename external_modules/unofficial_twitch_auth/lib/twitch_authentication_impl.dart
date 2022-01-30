@@ -7,7 +7,7 @@ import 'models/auth_validate_response.dart';
 import 'models/login_scope.dart';
 import 'twitch_authentication.dart';
 
-/// Implementation of the [TwitchAuthentication] class
+/// Implementation of the [TwitchAuthentication] class.
 class TwitchAuthenticationImpl extends TwitchAuthentication {
   @override
   TwitchHttpClientImpl get client => TwitchHttpClientImpl(

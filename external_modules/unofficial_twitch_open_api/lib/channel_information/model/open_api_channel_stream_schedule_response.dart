@@ -18,12 +18,13 @@ class OpenApiChannelStreamScheduleResponse extends BaseHttpResponse {
     this.vacation,
     int? status,
     String? message,
-  }): super(status: status, message: message);
+  }) : super(status: status, message: message);
 
-  static OpenApiChannelStreamScheduleResponse fromHttpResponse(Response response) {
+  static OpenApiChannelStreamScheduleResponse fromHttpResponse(
+      Response response) {
     final json = jsonDecode(response.body);
 
-    if(json != null) {
+    if (json != null) {
       return OpenApiChannelStreamScheduleResponse.fromJson(json);
     } else {
       return OpenApiChannelStreamScheduleResponse(
@@ -33,7 +34,8 @@ class OpenApiChannelStreamScheduleResponse extends BaseHttpResponse {
     }
   }
 
-  static OpenApiChannelStreamScheduleResponse fromJson(Map<String, dynamic>? json) {
+  static OpenApiChannelStreamScheduleResponse fromJson(
+      Map<String, dynamic>? json) {
     List<Map<String, dynamic>?>? segments = json?['data']?['segments'];
 
     final List<SegmentResult> segmentResultList = [];
@@ -41,7 +43,7 @@ class OpenApiChannelStreamScheduleResponse extends BaseHttpResponse {
     if (segments != null) {
       for (var segment in segments) {
         final result = SegmentResult.fromJson(segment);
-        if(result != null) {
+        if (result != null) {
           segmentResultList.add(result);
         }
       }
@@ -80,7 +82,7 @@ class SegmentResult {
   });
 
   static SegmentResult? fromJson(Map<String, dynamic>? json) {
-    if(json == null) return null;
+    if (json == null) return null;
 
     return SegmentResult(
       id: json['id'],
@@ -103,7 +105,7 @@ class VacationResult {
   });
 
   static VacationResult? fromJson(Map<String, dynamic>? json) {
-    if(json == null) return null;
+    if (json == null) return null;
 
     return VacationResult(
       startTime: json['start_time'],

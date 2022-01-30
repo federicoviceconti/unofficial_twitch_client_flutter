@@ -241,16 +241,16 @@ packages:
   unofficial_twitch_auth:
     dependency: "direct main"
     description:
-      path: "external_modules/unofficial_twitch_auth"
-      relative: true
-    source: path
+      name: unofficial_twitch_auth
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   unofficial_twitch_http:
     dependency: "direct main"
     description:
-      path: "external_modules/unofficial_twitch_http"
-      relative: true
-    source: path
+      name: unofficial_twitch_http
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1"
   unofficial_twitch_navigation:
     dependency: "direct main"

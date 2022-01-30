@@ -33,7 +33,7 @@ abstract class TwitchAuthentication {
     required String accessToken
   });
 
-  /// Revoke the token acquired during the OAuth process
+  /// Revoke the token acquired during the OAuth process.
   ///
   /// For more information, please read the link below:
   /// https://dev.twitch.tv/docs/authentication#revoking-access-tokens

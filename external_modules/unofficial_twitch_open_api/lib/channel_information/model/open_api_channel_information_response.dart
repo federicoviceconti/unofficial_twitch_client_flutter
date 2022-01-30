@@ -20,7 +20,8 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
     return 'OpenApiChannelInformationResponse{channelList: $channelList}';
   }
 
-  static OpenApiChannelInformationResponse fromJson(Map<String, dynamic>? json) {
+  static OpenApiChannelInformationResponse fromJson(
+      Map<String, dynamic>? json) {
     List? data = json?['data'];
 
     final channelInformationResults = <ChannelInformationResult>[];
@@ -28,7 +29,7 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
     if (data != null) {
       for (var item in data) {
         var jsonConverted = ChannelInformationResult.fromJson(item);
-        if(jsonConverted != null) {
+        if (jsonConverted != null) {
           channelInformationResults.add(jsonConverted);
         }
       }
@@ -44,7 +45,7 @@ class OpenApiChannelInformationResponse extends BaseHttpResponse {
   static OpenApiChannelInformationResponse fromHttpResponse(Response response) {
     final json = jsonDecode(response.body);
 
-    if(json != null) {
+    if (json != null) {
       return OpenApiChannelInformationResponse.fromJson(json);
     } else {
       return OpenApiChannelInformationResponse(
@@ -79,7 +80,7 @@ class ChannelInformationResult {
   });
 
   static ChannelInformationResult? fromJson(Map<String, dynamic>? json) {
-    if(json == null) return null;
+    if (json == null) return null;
 
     return ChannelInformationResult(
       broadcasterLanguage: json['broadcaster_language'],
