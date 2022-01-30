@@ -1,5 +1,5 @@
 name: unofficial_twitch_http
-description: HTTP module for unofficial_twitch_mobile project.
+description: Package used for making HTTP requests
 version: 0.0.1
 homepage: https://www.federicoviceconti.com
 

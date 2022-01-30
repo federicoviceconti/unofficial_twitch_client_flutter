@@ -8,6 +8,8 @@ import 'package:unofficial_twitch_http/twitch_http_client.dart';
 import 'models/environment.dart';
 import 'models/http_result.dart';
 
+/// Implementation of the [TwitchHttpClient] for making HTTP request via the
+/// http package.
 class TwitchHttpClientImpl extends TwitchHttpClient {
   static const String headerAuthorization = 'Authorization';
   static const String clientIdAuthorization = 'Client-Id';

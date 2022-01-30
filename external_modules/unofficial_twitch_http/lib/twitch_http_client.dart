@@ -4,7 +4,9 @@ import 'package:http/http.dart' as http;
 import 'models/http_result.dart';
 
 /// This abstract class contains the definition of the method used to create
-/// requests with the client. It could be overridden as you want for testing
+/// requests with the client.
+///
+/// It could be overridden as you want for testing
 /// purpose or use the implementation "[TwitchHttpClientImpl]" inside this
 /// package
 abstract class TwitchHttpClient {
@@ -34,7 +36,7 @@ abstract class TwitchHttpClient {
   /// operation
   Future<HttpResult<T>> makeGet<T extends BaseHttpResponse>(
     String path, {
-    required T Function(http.Response) convertBodyFunc,
+    required T Function(http.Response response) convertBodyFunc,
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     String? bearerToken,
@@ -63,7 +65,7 @@ abstract class TwitchHttpClient {
   /// operation
   Future<HttpResult<T>> makePost<T extends BaseHttpResponse>(
     String path, {
-    required T Function(http.Response) convertBodyFunc,
+    required T Function(http.Response response) convertBodyFunc,
     Map<String, String>? headers,
     Map<String, String?>? queryParameters,
     Map<String, dynamic>? body,

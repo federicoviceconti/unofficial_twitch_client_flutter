@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Publish the first version of the HTTP wrapper to make requests
