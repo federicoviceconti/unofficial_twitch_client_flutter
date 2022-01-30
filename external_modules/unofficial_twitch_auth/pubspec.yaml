@@ -1,7 +1,6 @@
 name: unofficial_twitch_auth
-description: Unofficial twitch auth
+description: Wrapper of Twitch API for authentication processes
 version: 0.0.1
-publish_to: 'none'
 homepage: https://www.federicoviceconti.com
 
 environment:
@@ -12,8 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  unofficial_twitch_http:
-    path: ../unofficial_twitch_http
+  unofficial_twitch_http: ^0.0.1
 
 dev_dependencies:
   flutter_test:

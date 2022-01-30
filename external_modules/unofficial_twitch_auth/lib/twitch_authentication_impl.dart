@@ -7,6 +7,7 @@ import 'models/auth_validate_response.dart';
 import 'models/login_scope.dart';
 import 'twitch_authentication.dart';
 
+/// Implementation of the [TwitchAuthentication] class
 class TwitchAuthenticationImpl extends TwitchAuthentication {
   @override
   TwitchHttpClientImpl get client => TwitchHttpClientImpl(
@@ -45,7 +46,10 @@ class TwitchAuthenticationImpl extends TwitchAuthentication {
         TwitchAuthenticationConstants.clientIdParam: clientId,
         TwitchAuthenticationConstants.tokenParam: accessToken,
       },
-      convertBodyFunc: (json) => AuthRevokeResponse.fromHttpResponse(json),
+      convertBodyFunc: (response) => AuthRevokeResponse.fromHttpResponse(
+        response.statusCode,
+        response.body,
+      ),
     );
   }
 
