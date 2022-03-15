@@ -38,7 +38,7 @@ class UnofficialTwitchClientApp extends StatelessWidget {
     );
   }
 
-  /// Override your own AppConfig to specify client_id and redirect URL
+  /// Override your own AppConfig and specify client_id and redirect URL
   List<SingleChildWidget> _initProvider() {
     String clientId = const String.fromEnvironment('CLIENT_ID');
 
