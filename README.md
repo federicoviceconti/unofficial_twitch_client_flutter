@@ -1,4 +1,4 @@
-# 🏆 unofficial_twitch_mobile
+# 🏆 unofficial_twitch_client_flutter
 
 An unofficial Flutter client, which use the newest Twitch API and provider for state management.
 
