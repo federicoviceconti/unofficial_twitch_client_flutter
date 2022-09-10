@@ -34,7 +34,7 @@ For the redirect you can use for example http://localhost.
 The Client ID is the one generated on the Twitch Dev console.
 
 This variable, will be set on
-the [lib/main.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/lib/main.dart#L42)
+the [lib/main.dart](https://github.com/federicoviceconti/unofficial_twitch_client_flutter/blob/master/lib/main.dart#L43)
 file.
 
 ### 📦 External packages
