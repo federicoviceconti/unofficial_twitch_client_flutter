@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:unofficial_twitch_mobile/functionalities/login_webview/login_webview_viewmodel.dart';
 import 'package:unofficial_twitch_mobile/utils/widget/base_widget.dart';
 import 'package:unofficial_twitch_mobile/utils/widget/base_state.dart';
-import 'package:webview_flutter/platform_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LoginWebViewWidget extends StatefulWidget {
@@ -17,8 +16,8 @@ class _LoginWebViewWidgetState extends BaseState<LoginWebViewWidget>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getInstance<LoginWebViewViewModel>().init();
     });
     super.initState();

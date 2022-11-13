@@ -15,8 +15,8 @@ class _HomeScreenWidgetState extends BaseState<HomeScreenWidget>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getInstance<HomeScreenViewModel>().init();
     });
     super.initState();
